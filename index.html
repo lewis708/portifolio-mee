@@ -5,74 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section id="hero" style="background: linear-gradient(220deg, #ff7e5f, #feb47b); animation: gradient 15s ease infinite;">
+    <header>
         <h1>Welcome to My Portfolio</h1>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="metrics">
-            <p>Experience: 5 Years</p>
-            <p>Projects Completed: 20+</p>
-            <p>Technologies: HTML, CSS, JS, React, Node.js</p>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="tabs">
-            <button id="overview-btn">Overview</button>
-            <button id="radar-btn">Radar Chart</button>
-            <button id="breakdown-btn">Breakdown</button>
-        </div>
-        <div id="skills-content">
-            <div id="overview" class="tab-content">Overview of my skills.</div>
-            <div id="radar" class="tab-content">[Radar Chart Here]</div>
-            <div id="breakdown" class="tab-content">Breakdown of skills.</div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>Featured Projects</h2>
-        <div class="project-list">
-            <div class="project">Project 1</div>
-            <div class="project">Project 2</div>
-            <div class="project">Project 3</div>
-            <div class="project">Project 4</div>
-        </div>
-    </section>
-
-    <!-- Experience Timeline Section -->
-    <section id="experience">
-        <h2>Experience Timeline</h2>
-        <div class="timeline">[Timeline Here]</div>
-    </section>
-
-    <!-- Career Growth Simulator -->
-    <section id="growth-simulator">
-        <h2>Career Growth Simulator</h2>
-        <input type="range" min="0" max="100" value="50" class="slider" />
-    </section>
-
-    <!-- AI Chat Powered by LLaMA 3 -->
-    <section id="ai-chat">
-        <h2>AI Chat</h2>
-        <div>[AI Chat Interface Here]</div>
-    </section>
+    </header>
+    <main>
+        <section>
+            <h2>About Me</h2>
+            <p>Passionate web developer with experience in creating dynamic websites.</p>
+        </section>
+        <section>
+            <h2>Projects</h2>
+            <ul>
+                <li>Project 1: Website Redesign</li>
+                <li>Project 2: E-commerce Application</li>
+                <li>Project 3: Blogging Platform</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Contact</h2>
+            <p>Email: myemail@example.com</p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2026 My Portfolio</p>
+    </footer>
 </body>
 </html>
-
-<style>
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-</style>
