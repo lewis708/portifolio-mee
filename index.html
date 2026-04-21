@@ -1,379 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lewis Munene Mutabari call:+254729674423 — Full-Stack Developer Portfolio</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="description" content="Lewis Munene Mutabari – IT Developer & Creator Portfolio" />
+  <title>Lewis Munene Mutabari | Portfolio</title>
+  <link rel="manifest" href="#" id="manifest-link" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface2: #1a1a26;
+      --surface3: #111119;
+      --accent: #7c5cfc;
+      --accent2: #f72585;
+      --accent3: #00f5d4;
+      --accent4: #ffbe0b;
+      --text: #e8e8f0;
+      --muted: #7878a0;
+      --border: rgba(124,92,252,0.18);
+      --glow: rgba(124,92,252,0.35);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Outfit', sans-serif; font-weight: 300;
+      line-height: 1.7; overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; opacity: .5;
+    }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: #0a0e1a;
-    color: #e2e8f0;
-    overflow-x: hidden;
-  }
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(10,10,15,0.9); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      letter-spacing: -.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace; font-size: .78rem;
+      color: var(--muted); text-decoration: none; letter-spacing: .08em;
+      text-transform: uppercase; transition: color .3s;
+    }
+    .nav-links a:hover { color: var(--accent3); }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .75rem 1.6rem; border-radius: 8px;
+      font-family: 'DM Mono', monospace; font-size: .8rem;
+      font-weight: 400; letter-spacing: .06em; text-decoration: none;
+      transition: all .25s; cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; box-shadow: 0 4px 24px rgba(124,92,252,.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(124,92,252,.5); }
+    .btn-outline {
+      background: transparent; color: var(--accent3);
+      border: 1px solid rgba(0,245,212,.35);
+    }
+    .btn-outline:hover { background: rgba(0,245,212,.08); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent; color: var(--muted); border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { background: var(--surface2); color: var(--text); }
 
-  /* Animated gradient background */
-  .hero-bg {
-    background: linear-gradient(135deg, #0a0e1a 0%, #0f1729 40%, #0a1628 70%, #0d1117 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-bg::before {
-    content: '';
-    position: absolute;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
-    top: -100px; left: -100px;
-    animation: pulse-glow 6s ease-in-out infinite;
-  }
-  .hero-bg::after {
-    content: '';
-    position: absolute;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%);
-    bottom: 0; right: 0;
-    animation: pulse-glow 8s ease-in-out infinite reverse;
-  }
-  @keyframes pulse-glow {
-    0%, 100% { transform: scale(1); opacity: 0.7; }
-    50% { transform: scale(1.2); opacity: 1; }
-  }
+    /* ── SECTIONS ── */
+    section { padding: 6rem 3rem; position: relative; }
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: .72rem;
+      color: var(--accent); letter-spacing: .18em; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; letter-spacing: -.03em; margin-bottom: 1rem;
+    }
+    .section-desc { color: var(--muted); max-width: 560px; margin-bottom: 3rem; }
+    .max-w { max-width: 1100px; margin: 0 auto; }
 
-  .glass {
-    background: rgba(255,255,255,0.04);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.08);
-  }
-  .glass-hover {
-    transition: all 0.3s ease;
-  }
-  .glass-hover:hover {
-    background: rgba(255,255,255,0.07);
-    border-color: rgba(99,102,241,0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(99,102,241,0.15);
-  }
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 8rem 3rem 5rem; position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 40%, rgba(124,92,252,.14) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 70%, rgba(247,37,133,.09) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 60% 20%, rgba(0,245,212,.06) 0%, transparent 60%);
+    }
+    /* floating orbs */
+    .orb {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: .18; z-index: 0;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+    .orb1 { width: 500px; height: 500px; background: var(--accent); top: -10%; left: -5%; animation-delay: 0s; }
+    .orb2 { width: 300px; height: 300px; background: var(--accent2); bottom: 5%; right: 5%; animation-delay: -4s; }
+    .orb3 { width: 200px; height: 200px; background: var(--accent3); top: 40%; right: 20%; animation-delay: -8s; }
+    @keyframes drift { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(30px,20px) scale(1.05)} }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(0,245,212,.1); border: 1px solid rgba(0,245,212,.3);
+      color: var(--accent3); font-family: 'DM Mono', monospace;
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+      padding: .4rem 1rem; border-radius: 100px; margin-bottom: 1.8rem;
+    }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent3); animation: blink 2s infinite; }
+    h1 {
+      font-family: 'Syne', sans-serif; font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 800; line-height: 1.05; letter-spacing: -.04em; margin-bottom: .5rem;
+    }
+    .h1-name {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 55%, var(--accent3) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .h1-subtitle {
+      font-family: 'DM Mono', monospace; font-size: clamp(1rem, 2vw, 1.35rem);
+      font-weight: 300; color: var(--muted); letter-spacing: .04em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 580px; margin-bottom: 2.5rem; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .hero-stat .num {
+      font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-stat .lbl { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
 
-  .gradient-text {
-    background: linear-gradient(135deg, #818cf8, #34d399);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+    /* ── ABOUT ── */
+    #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-text p { color: var(--muted); margin-bottom: 1.2rem; }
+    .about-text .highlight { color: var(--accent3); font-weight: 500; }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+    .skill-tag {
+      font-family: 'DM Mono', monospace; font-size: .72rem;
+      background: rgba(124,92,252,.12); border: 1px solid rgba(124,92,252,.25);
+      color: var(--accent); padding: .3rem .8rem; border-radius: 4px;
+      transition: all .2s;
+    }
+    .skill-tag:hover { background: rgba(124,92,252,.25); transform: translateY(-1px); }
+    .about-visual { display: flex; align-items: center; justify-content: center; }
+    .avatar-ring {
+      width: 280px; height: 280px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+      padding: 3px; position: relative; animation: rotateBorder 8s linear infinite;
+    }
+    @keyframes rotateBorder { 0%{filter:hue-rotate(0deg)} 100%{filter:hue-rotate(360deg)} }
+    .avatar-inner {
+      width: 100%; height: 100%; border-radius: 50%; background: var(--surface);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+    }
+    .avatar-initials { font-size: 3.5rem; font-weight: 800; line-height: 1; }
+    .avatar-name { font-size: .7rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-top: .3rem; }
 
-  .skill-bar-fill {
-    height: 6px;
-    border-radius: 3px;
-    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+    /* ── EDUCATION ── */
+    #education { background: var(--bg); }
+    .edu-timeline { position: relative; padding-left: 2rem; }
+    .edu-timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+      border-radius: 2px;
+    }
+    .edu-card {
+      position: relative; margin-bottom: 2rem; padding: 2rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; transition: all .3s;
+    }
+    .edu-card::before {
+      content: ''; position: absolute; left: -2.55rem; top: 1.8rem;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(124,92,252,.2), 0 0 0 8px rgba(124,92,252,.07);
+    }
+    .edu-card:hover { transform: translateX(6px); border-color: rgba(124,92,252,.4); box-shadow: 0 8px 32px rgba(124,92,252,.1); }
+    .edu-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: .5rem; }
+    .edu-degree { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; }
+    .edu-badge {
+      font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .08em;
+      background: rgba(0,245,212,.1); border: 1px solid rgba(0,245,212,.25);
+      color: var(--accent3); padding: .25rem .7rem; border-radius: 100px;
+      white-space: nowrap;
+    }
+    .edu-institution { color: var(--accent); font-weight: 500; margin-bottom: .3rem; display: flex; align-items: center; gap: .5rem; }
+    .edu-institution::before { content: '🏛️'; font-size: .9rem; }
+    .edu-duration { font-family: 'DM Mono', monospace; font-size: .72rem; color: var(--muted); display: flex; align-items: center; gap: .4rem; }
+    .edu-duration::before { content: '📅'; font-size: .8rem; }
+    .edu-desc { color: var(--muted); font-size: .9rem; margin-top: .8rem; }
+    .edu-modules { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+    .edu-module {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      background: rgba(124,92,252,.1); border: 1px solid rgba(124,92,252,.2);
+      color: var(--accent); padding: .2rem .6rem; border-radius: 3px;
+    }
 
-  .tab-btn {
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    border: 1px solid transparent;
-    background: transparent;
-    color: #94a3b8;
-  }
-  .tab-btn.active {
-    background: rgba(99,102,241,0.2);
-    border-color: rgba(99,102,241,0.5);
-    color: #818cf8;
-  }
-  .tab-btn:hover:not(.active) {
-    background: rgba(255,255,255,0.05);
-    color: #e2e8f0;
-  }
+    /* ── PROJECTS ── */
+    #projects { background: var(--surface); border-top: 1px solid var(--border); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .project-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      transition: all .3s; display: flex; flex-direction: column;
+      position: relative;
+    }
+    .project-card-top {
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+    .project-card:nth-child(2) .project-card-top { background: linear-gradient(90deg, var(--accent2), var(--accent4)); }
+    .project-card:nth-child(3) .project-card-top { background: linear-gradient(90deg, var(--accent3), var(--accent)); }
+    .project-card:nth-child(4) .project-card-top { background: linear-gradient(90deg, var(--accent4), var(--accent2)); }
+    .project-card:nth-child(5) .project-card-top { background: linear-gradient(90deg, var(--accent), var(--accent3)); }
+    .project-card:nth-child(6) .project-card-top { background: linear-gradient(90deg, var(--accent2), var(--accent3)); }
+    .project-card:hover { transform: translateY(-6px); border-color: rgba(124,92,252,.45); box-shadow: 0 20px 60px rgba(124,92,252,.15); }
+    .project-body { padding: 1.8rem; flex: 1; display: flex; flex-direction: column; }
+    .project-icon-row { display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; }
+    .project-icon {
+      width: 46px; height: 46px; border-radius: 10px;
+      background: var(--surface); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    }
+    .project-num { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--muted); }
+    .project-card h3 { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: .6rem; }
+    .project-card p { color: var(--muted); font-size: .88rem; line-height: 1.6; margin-bottom: 1.5rem; flex: 1; }
+    .project-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .6rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .project-tag {
+      font-family: 'DM Mono', monospace; font-size: .62rem;
+      background: rgba(0,245,212,.07); border: 1px solid rgba(0,245,212,.18);
+      color: var(--accent3); padding: .18rem .55rem; border-radius: 3px;
+    }
+    .project-link {
+      font-family: 'DM Mono', monospace; font-size: .68rem; color: var(--accent);
+      text-decoration: none; display: flex; align-items: center; gap: .3rem;
+      transition: gap .2s;
+    }
+    .project-link:hover { gap: .6rem; }
 
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
+    /* ── CONTACT ── */
+    #contact { background: var(--bg); border-top: 1px solid var(--border); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .contact-info h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; }
+    .contact-info p { color: var(--muted); margin-bottom: 2rem; }
+    .contact-links { display: flex; flex-direction: column; gap: .9rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.2rem;
+      text-decoration: none; color: var(--text); transition: all .25s;
+    }
+    .contact-link:hover { border-color: rgba(124,92,252,.5); transform: translateX(6px); background: rgba(124,92,252,.07); }
+    .contact-icon { font-size: 1.3rem; width: 2.2rem; flex-shrink: 0; }
+    .contact-label { font-family: 'DM Mono', monospace; font-size: .62rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+    .contact-value { font-size: .92rem; }
 
-  .chart-container {
-    position: relative;
-    min-height: 260px;
-    max-height: 380px;
-    margin-bottom: 1rem;
-  }
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 0; overflow: hidden;
+    }
+    .footer-manifesto {
+      background: linear-gradient(135deg, rgba(124,92,252,.08), rgba(247,37,133,.06), rgba(0,245,212,.04));
+      padding: 4rem 3rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .footer-manifesto::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(124,92,252,.08) 0%, transparent 70%);
+    }
+    .footer-manifesto-text {
+      position: relative; z-index: 1;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      font-weight: 800; letter-spacing: -.01em; line-height: 1.35;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent3) 40%, var(--accent) 80%, var(--accent2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+    }
+    .footer-manifesto-sub {
+      position: relative; z-index: 1;
+      font-family: 'DM Mono', monospace; font-size: .8rem;
+      color: var(--muted); letter-spacing: .15em; text-transform: uppercase;
+      margin-top: 1rem;
+    }
+    .footer-divider { height: 1px; background: var(--border); }
+    .footer-bottom {
+      padding: 1.5rem 3rem; display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-family: 'DM Mono', monospace; font-size: .72rem; color: var(--muted); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-family: 'DM Mono', monospace; font-size: .68rem;
+      color: var(--muted); text-decoration: none; transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--accent3); }
 
-  .timeline-dot {
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    background: #818cf8;
-    border: 2px solid #0a0e1a;
-    box-shadow: 0 0 0 3px rgba(129,140,248,0.3);
-    flex-shrink: 0;
-    margin-top: 4px;
-  }
+    /* ── CHATBOT FAB ── */
+    #chat-fab {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+      width: 62px; height: 62px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; box-shadow: 0 4px 24px rgba(124,92,252,.5);
+      transition: all .3s;
+    }
+    #chat-fab:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 8px 40px rgba(124,92,252,.7); }
+    #chat-fab .pulse {
+      position: absolute; inset: -5px; border-radius: 50%;
+      background: rgba(124,92,252,.25); animation: pulse 2.5s infinite;
+    }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(1.2);opacity:0} }
 
-  .chat-bubble-user {
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    border-radius: 18px 18px 4px 18px;
-    padding: 10px 16px;
-    max-width: 80%;
-    align-self: flex-end;
-    font-size: 0.875rem;
-  }
-  .chat-bubble-bot {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 18px 18px 18px 4px;
-    padding: 10px 16px;
-    max-width: 85%;
-    align-self: flex-start;
-    font-size: 0.875rem;
-    line-height: 1.6;
-  }
+    /* ── CHATBOT PANEL ── */
+    #chat-panel {
+      position: fixed; bottom: 5.5rem; right: 2rem; z-index: 200;
+      width: min(430px, calc(100vw - 2rem));
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; box-shadow: 0 28px 90px rgba(0,0,0,.7);
+      display: flex; flex-direction: column; overflow: hidden;
+      transform: translateY(20px) scale(.95); opacity: 0;
+      pointer-events: none; transition: all .35s cubic-bezier(.34,1.56,.64,1);
+    }
+    #chat-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
+    .chat-header {
+      background: linear-gradient(135deg, rgba(124,92,252,.22), rgba(247,37,133,.12));
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .chat-header-left { display: flex; align-items: center; gap: .8rem; }
+    .chat-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; position: relative;
+    }
+    .chat-avatar::after {
+      content: ''; position: absolute; bottom: 1px; right: 1px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent3); border: 2px solid var(--surface);
+    }
+    .chat-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .95rem; }
+    .chat-status {
+      font-family: 'DM Mono', monospace; font-size: .62rem;
+      display: flex; align-items: center; gap: .3rem; color: var(--muted);
+    }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent3); }
+    .status-dot.blink { animation: blink 2s infinite; }
+    .status-dot.offline { background: #ff6060; animation: none; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+    .chat-mode-toggle {
+      display: flex; gap: .3rem;
+      background: var(--surface2); border-radius: 8px; padding: .2rem;
+    }
+    .mode-btn {
+      font-family: 'DM Mono', monospace; font-size: .63rem;
+      padding: .28rem .65rem; border-radius: 6px; border: none; cursor: pointer;
+      background: transparent; color: var(--muted); transition: all .2s;
+    }
+    .mode-btn.active { background: var(--accent); color: #fff; }
+    .chat-close {
+      background: none; border: none; color: var(--muted);
+      cursor: pointer; font-size: 1rem; padding: .3rem;
+      transition: all .2s; border-radius: 6px;
+    }
+    .chat-close:hover { color: var(--accent2); background: rgba(247,37,133,.1); }
 
-  .typing-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: #818cf8;
-    animation: typing 1.2s infinite;
-  }
-  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes typing {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-    30% { transform: translateY(-6px); opacity: 1; }
-  }
+    /* Quick suggestions */
+    #chat-suggestions {
+      padding: .6rem 1rem; display: flex; gap: .5rem; flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      background: rgba(124,92,252,.04);
+    }
+    .suggestion {
+      font-family: 'DM Mono', monospace; font-size: .62rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--muted); padding: .25rem .65rem; border-radius: 100px;
+      cursor: pointer; transition: all .2s; white-space: nowrap;
+    }
+    .suggestion:hover { background: rgba(124,92,252,.15); color: var(--accent); border-color: rgba(124,92,252,.4); }
 
-  .project-card {
-    border-radius: 16px;
-    padding: 24px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-  .project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
-  }
+    /* messages */
+    #chat-messages {
+      flex: 1; overflow-y: auto; padding: 1rem;
+      display: flex; flex-direction: column; gap: .9rem;
+      min-height: 280px; max-height: 360px;
+    }
+    #chat-messages::-webkit-scrollbar { width: 3px; }
+    #chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .msg { display: flex; gap: .6rem; animation: msgIn .3s ease; }
+    @keyframes msgIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+    .msg.user { flex-direction: row-reverse; }
+    .msg-bubble {
+      max-width: 80%; padding: .75rem 1rem;
+      border-radius: 14px; font-size: .875rem; line-height: 1.6;
+    }
+    .msg.bot .msg-bubble {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); border-bottom-left-radius: 3px;
+    }
+    .msg.user .msg-bubble {
+      background: linear-gradient(135deg, var(--accent), rgba(247,37,133,.85));
+      color: #fff; border-bottom-right-radius: 3px;
+    }
+    .msg-avatar {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; margin-top: auto;
+    }
+    .typing-dots { display: flex; align-items: center; gap: 4px; padding: .5rem .8rem; }
+    .typing-dots span {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--muted); animation: bounce 1.3s infinite;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: .18s; }
+    .typing-dots span:nth-child(3) { animation-delay: .36s; }
+    @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-7px)} }
 
-  .tag {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 500;
-    background: rgba(99,102,241,0.15);
-    border: 1px solid rgba(99,102,241,0.3);
-    color: #a5b4fc;
-    margin: 2px;
-  }
+    /* API key */
+    #api-key-zone { padding: .9rem 1rem; border-bottom: 1px solid var(--border); display: none; }
+    #api-key-zone.show { display: block; }
+    #api-key-zone label { font-family: 'DM Mono', monospace; font-size: .62rem; color: var(--muted); display: block; margin-bottom: .4rem; letter-spacing: .08em; text-transform: uppercase; }
+    .api-row { display: flex; gap: .5rem; }
+    #api-key-input {
+      flex: 1; background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: .5rem .8rem;
+      color: var(--text); font-family: 'DM Mono', monospace; font-size: .73rem;
+      outline: none; transition: border-color .2s;
+    }
+    #api-key-input:focus { border-color: rgba(124,92,252,.5); }
+    #save-api-key {
+      background: var(--accent); border: none; border-radius: 8px;
+      color: #fff; padding: .5rem .9rem;
+      font-family: 'DM Mono', monospace; font-size: .7rem; cursor: pointer;
+      transition: opacity .2s; white-space: nowrap;
+    }
+    #save-api-key:hover { opacity: .85; }
 
-  .nav-link {
-    font-size: 0.875rem;
-    color: #94a3b8;
-    cursor: pointer;
-    transition: color 0.2s;
-    padding: 4px 0;
-  }
-  .nav-link:hover { color: #818cf8; }
+    /* chat input */
+    .chat-footer {
+      border-top: 1px solid var(--border); padding: .8rem 1rem;
+      display: flex; gap: .6rem; align-items: flex-end;
+    }
+    #chat-input {
+      flex: 1; background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: .6rem .9rem;
+      color: var(--text); font-family: 'Outfit', sans-serif; font-size: .87rem;
+      resize: none; outline: none; transition: border-color .2s; max-height: 110px;
+    }
+    #chat-input:focus { border-color: rgba(124,92,252,.5); }
+    #chat-input::placeholder { color: var(--muted); }
+    #chat-send {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: all .2s;
+    }
+    #chat-send:hover { transform: scale(1.08) rotate(-5deg); }
+    #chat-send svg { fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 
-  .section-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
+    /* PWA BANNER */
+    #install-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+      background: var(--surface2); border-top: 1px solid var(--border);
+      padding: 1rem 2rem; display: none; align-items: center;
+      justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    #install-banner.show { display: flex; }
+    #install-banner p { font-size: .88rem; }
+    #install-banner p span { color: var(--accent); font-weight: 500; }
+    .banner-btns { display: flex; gap: .8rem; }
 
-  .metric-card {
-    text-align: center;
-    padding: 20px;
-    border-radius: 12px;
-  }
-
-  .sim-slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 4px;
-    border-radius: 2px;
-    background: rgba(255,255,255,0.1);
-    outline: none;
-  }
-  .sim-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    background: #818cf8;
-    cursor: pointer;
-    box-shadow: 0 0 8px rgba(129,140,248,0.5);
-  }
-
-  .code-font { font-family: 'Fira Code', monospace; }
-
-  .scroll-indicator {
-    animation: bounce 2s infinite;
-  }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-  }
-
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #0a0e1a; }
-  ::-webkit-scrollbar-thumb { background: rgba(129,140,248,0.3); border-radius: 3px; }
-
-  .section { padding: 80px 0; }
-
-  @media (max-width: 768px) {
-    .section { padding: 48px 0; }
-    .section-title { font-size: 1.4rem; }
-  }
-</style>
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      h1 { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+      .hero-stats { gap: 1.5rem; }
+      .footer-bottom { justify-content: center; text-align: center; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav class="fixed top-0 left-0 right-0 z-50 glass" style="padding: 14px 0;">
-  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
-    <span class="code-font gradient-text font-semibold text-sm">lewis M mutabari</span>
-    <div class="hidden md:flex gap-6">
-      <span class="nav-link" onclick="scrollTo('About')">About</span>
-      <span class="nav-link" onclick="scrollTo('Skills')">Skills</span>
-      <span class="nav-link" onclick="scrollTo('Projects')">Projects</span>
-      <span class="nav-link" onclick="scrollTo('Experience')">Experience</span>
-      <span class="nav-link" onclick="scrollTo('Simulator')">Simulator</span>
-      <span class="nav-link" onclick="scrollTo('Chat')">Chat</span>
-    </div>
-    <a href="mailto:lewismune2003@email.com" class="text-xs px-4 py-2 rounded-lg font-medium" style="background: rgba(99,102,241,0.2); border: 1px solid rgba(99,102,241,0.4); color: #818cf8;">lewismune2003@email</a>
-  </div>
+<nav>
+  <div class="logo">LMM</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=lewismune2003@gmail.com&su=Hello%20Lewis!%20Let's%20Work%20Together&body=Hi%20Lewis%2C%0A%0AI%20found%20your%20portfolio%20and%20I%27d%20love%20to%20connect!%0A%0ABest%20regards" target="_blank" rel="noopener">
+    ✉ Hire Me
+  </a>
 </nav>
 
 <!-- HERO -->
-<section class="hero-bg min-h-screen flex items-center justify-center relative" style="padding-top: 80px;">
-  <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs text-emerald-400 mb-8" style="border-color: rgba(52,211,153,0.3);">
-      <span class="w-2 h-2 rounded-full bg-emerald-400" style="animation: pulse 2s infinite;"></span>
-      Available for opportunities
+<section id="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Available for projects</span>
+    <h1>Lewis Munene<br/><span class="h1-name">Mutabari</span></h1>
+    <p class="h1-subtitle">// IT Developer · UI/UX Designer · Creator</p>
+    <p class="hero-sub">Transforming ideas into elegant digital realities — from intelligent web applications to systems that genuinely move the needle. Currently pursuing my degree at Kirinyaga University.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#projects">View My Work →</a>
+      <a class="btn btn-outline" href="https://mail.google.com/mail/?view=cm&fs=1&to=lewismune2003@gmail.com&su=Project%20Inquiry&body=Hi%20Lewis%2C%0A%0AI%27d%20love%20to%20discuss%20a%20project!%0A%0ABest%20regards" target="_blank" rel="noopener">✉ Get In Touch</a>
     </div>
-    <h1 class="text-5xl md:text-7xl font-800 mb-4 leading-tight" style="font-weight: 800;">
-      Lewis Munene Mutabari
-    </h1>
-    <p class="text-xl md:text-2xl gradient-text font-semibold mb-6">Full-Stack Developer & IT Professional</p>
-    <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-      Passionate IT professional based in Kenya. I turn complex problems into clean, efficient solutions — one line of code at a time.
-    </p>
-    <div class="flex flex-wrap justify-center gap-3 mb-10">
-      <span class="tag" style="font-size:0.85rem; padding: 6px 14px;">Python 🐍</span>
-      <span class="tag" style="font-size:0.85rem; padding: 6px 14px;">Full-Stack 💻</span>
-    </div>
-    <div class="flex justify-center gap-4 mb-12">
-      <a href="https://github.com/lewis708" class="glass glass-hover px-6 py-3 rounded-xl text-sm font-medium flex items-center gap-2">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a href="https://linkedin.com/in/lewismutabari" target="_blank" class="glass glass-hover px-6 py-3 rounded-xl text-sm font-medium flex items-center gap-2">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#0077b5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://lewismune2003@gmail.com" class="glass glass-hover px-6 py-3 rounded-xl text-sm font-medium flex items-center gap-2">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-        Email
-      </a>
-    </div>
-    <div class="scroll-indicator text-slate-500 text-xs flex flex-col items-center gap-1">
-      <span>call:+254729674423. scroll</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">4+</div><div class="lbl">Projects Built</div></div>
+      <div class="hero-stat"><div class="num">3+</div><div class="lbl">Years Coding</div></div>
+      <div class="hero-stat"><div class="num">2026</div><div class="lbl">Graduating</div></div>
+      <div class="hero-stat"><div class="num">∞</div><div class="lbl">Ideas Brewing</div></div>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section class="section" id="about">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <p class="text-indigo-400 text-sm font-medium mb-2 code-font">// about me</p>
-        <h2 class="section-title gradient-text">Crafting Digital Experiences</h2>
-        <p class="text-slate-400 leading-relaxed mb-6">
-          I'm a dedicated software developer based in <strong class="text-emerald-400">Kenya</strong> with a strong foundation in Information Technology. I love crafting digital experiences that are both functional and beautiful.
-        </p>
-        <p class="text-slate-400 leading-relaxed mb-8">
-          When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the tech community.
-        </p>
-        <div class="grid grid-cols-3 gap-4">
-          <div class="metric-card glass rounded-xl">
-            <div class="text-2xl font-bold gradient-text">15+</div>
-            <div class="text-xs text-slate-500 mt-1">Projects Delivered</div>
-          </div>
-          <div class="metric-card glass rounded-xl">
-            <div class="text-2xl font-bold gradient-text">40%</div>
-            <div class="text-xs text-slate-500 mt-1">API Speed Boost</div>
-          </div>
-          <div class="metric-card glass rounded-xl">
-            <div class="text-2xl font-bold gradient-text">200+</div>
-            <div class="text-xs text-slate-500 mt-1">Staff Supported</div>
-          </div>
-        </div>
+<section id="about">
+  <div class="max-w about-grid">
+    <div class="about-text">
+      <div class="section-label">// about me</div>
+      <h2>Crafting Code,<br/>One Line at a Time</h2>
+      <p>I'm <span class="highlight">Lewis Munene Mutabari</span> — a passionate Information Technology student and developer who thrives at the intersection of logic and creativity. Whether it's architecting a database, designing a pixel-perfect UI, or bringing AI into everyday tools, I show up with full dedication.</p>
+      <p>When I'm not immersed in code, you'll find me exploring voice-over artistry, tinkering with new tech stacks, or fuelling the next session with a strong cup of coffee ☕</p>
+      <div class="skills-grid">
+        <span class="skill-tag">HTML / CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">UI/UX Design</span>
+        <span class="skill-tag">AI/ML</span>
+        <span class="skill-tag">Firebase</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Voice-over</span>
       </div>
-      <div class="glass rounded-2xl p-6">
-        <p class="text-xs text-slate-500 code-font mb-4">// developer.profile.json</p>
-        <pre class="code-font text-sm leading-relaxed text-slate-300" style="white-space: pre-wrap;">{
-  <span class="text-indigo-400">"name"</span>: <span class="text-emerald-400">"Lewis Mutabari"</span>,
-  <span class="text-indigo-400">"role"</span>: <span class="text-emerald-400">"Full-Stack Developer"</span>,
-  <span class="text-indigo-400">"location"</span>: <span class="text-emerald-400">"Nairobi, Kenya"</span>,
-  <span class="text-indigo-400">"focus"</span>: [
-    <span class="text-emerald-400">"Web Applications"</span>,
-    <span class="text-emerald-400">"AI Integration"</span>,
-    <span class="text-emerald-400">"API Development"</span>
-  ],
-  <span class="text-indigo-400">"available"</span>: <span class="text-yellow-400">true</span>,
-  <span class="text-indigo-400">"coffee_driven"</span>: <span class="text-yellow-400">true</span>
-}</pre>
+    </div>
+    <div class="about-visual">
+      <div class="avatar-ring">
+        <div class="avatar-inner">
+          <div class="avatar-initials">LMM</div>
+          <div class="avatar-name">Lewis Munene</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section class="section" id="skills" style="background: rgba(255,255,255,0.01);">
-  <div class="max-w-6xl mx-auto px-6">
-    <p class="text-indigo-400 text-sm font-medium mb-2 code-font">// technical skills</p>
-    <h2 class="section-title gradient-text mb-10">Skills & Expertise</h2>
-
-    <!-- Tab buttons -->
-    <div class="flex flex-wrap gap-2 mb-8">
-      <button class="tab-btn active" onclick="switchSkillTab('overview', this)">Overview</button>
-      <button class="tab-btn" onclick="switchSkillTab('radar', this)">Radar Chart</button>
-      <button class="tab-btn" onclick="switchSkillTab('breakdown', this)">Breakdown</button>
-    </div>
-
-    <!-- Overview Tab -->
-    <div id="tab-overview" class="tab-panel active">
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="glass rounded-2xl p-6">
-          <h3 class="text-sm font-semibold text-slate-300 mb-5">Backend & Languages</h3>
-          <div id="skills-backend"></div>
+<!-- EDUCATION -->
+<section id="education">
+  <div class="max-w">
+    <div class="section-label">// academic journey</div>
+    <h2>Where I'm<br/>Learning</h2>
+    <p class="section-desc">My academic foundation — where rigorous theory meets hands-on application, and every semester sharpens the craft.</p>
+    <div class="edu-timeline">
+      <div class="edu-card">
+        <div class="edu-header">
+          <div class="edu-degree">🎓 Bachelor of Science in Information Technology</div>
+          <span class="edu-badge">In Progress</span>
         </div>
-        <div class="glass rounded-2xl p-6">
-          <h3 class="text-sm font-semibold text-slate-300 mb-5">Frontend & Tools</h3>
-          <div id="skills-frontend"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Radar Tab -->
-    <div id="tab-radar" class="tab-panel">
-      <div class="glass rounded-2xl p-6">
-        <div class="chart-container" style="min-height: 320px;">
-          <canvas id="radarChart"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <!-- Breakdown Tab -->
-    <div id="tab-breakdown" class="tab-panel">
-      <div class="glass rounded-2xl p-6">
-        <div class="chart-container" style="min-height: 300px;">
-          <canvas id="breakdownChart"></canvas>
+        <div class="edu-institution">Kirinyaga University</div>
+        <div class="edu-duration">2022 – 2026 (Expected Graduation)</div>
+        <p class="edu-desc">A comprehensive four-year programme covering software development, database systems, networking, cybersecurity, AI fundamentals, and systems analysis. The curriculum bridges theoretical computer science with real-world engineering practice — preparing graduates to architect robust, scalable, and impactful digital solutions.</p>
+        <div class="edu-modules">
+          <span class="edu-module">Software Engineering</span>
+          <span class="edu-module">Database Systems</span>
+          <span class="edu-module">Web Development</span>
+          <span class="edu-module">Computer Networks</span>
+          <span class="edu-module">Systems Analysis</span>
+          <span class="edu-module">AI & Machine Learning</span>
+          <span class="edu-module">Cybersecurity</span>
+          <span class="edu-module">Mobile Development</span>
         </div>
       </div>
     </div>
@@ -381,76 +619,133 @@
 </section>
 
 <!-- PROJECTS -->
-<section class="section" id="projects">
-  <div class="max-w-6xl mx-auto px-6">
-    <p class="text-indigo-400 text-sm font-medium mb-2 code-font">// featured work</p>
-    <h2 class="section-title gradient-text mb-10">Projects</h2>
-    <div class="grid md:grid-cols-2 gap-6">
+<section id="projects">
+  <div class="max-w">
+    <div class="section-label">// selected work</div>
+    <h2>Projects I'm<br/>Proud Of</h2>
+    <p class="section-desc">Each project represents a challenge embraced, a problem solved, and a new skill forged in the fire of real-world building.</p>
+    <div class="projects-grid">
 
-      <div class="project-card glass glass-hover">
-        <div class="flex items-start justify-between mb-4">
-          <span class="text-3xl">⚡</span>
-          <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(99,102,241,0.15); color: #818cf8; border: 1px solid rgba(99,102,241,0.3);">AI / LLM</span>
-        </div>
-        <h3 class="text-lg font-semibold mb-2">AI-Powered Portfolio Chatbot</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          A personal portfolio site with an embedded LLaMA 3 chatbot that answers questions about skills, projects, and experience — all running locally via Ollama.
-        </p>
-        <div class="flex flex-wrap gap-1">
-          <span class="tag">Python</span>
-              <span class="tag">Ollama</span>
-          <span class="tag">LLaMA 3</span>
-          <span class="tag">Tailwind CSS</span>
+      <div class="project-card">
+        <div class="project-card-top"></div>
+        <div class="project-body">
+          <div class="project-icon-row">
+            <div class="project-icon">🛒</div>
+            <span class="project-num">01</span>
+          </div>
+          <h3>Point of Sale System for Retailers</h3>
+          <p>A full-featured POS application engineered for modern retail environments. Handles real-time inventory management, sales tracking, receipt generation, and end-of-day reporting — all wrapped in an intuitive interface that cashiers can master in minutes. Supports barcode scanning and multi-payment methods.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">PHP</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">JavaScript</span>
+              <span class="project-tag">Bootstrap</span>
+            </div>
+            <a href="#" class="project-link" onclick="return false;">View →</a>
+          </div>
         </div>
       </div>
 
-      <div class="project-card glass glass-hover">
-        <div class="flex items-start justify-between mb-4">
-          <span class="text-3xl">🌐</span>
-          <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(52,211,153,0.15); color: #34d399; border: 1px solid rgba(52,211,153,0.3);">Healthcare</span>
-        </div>
-        <h3 class="text-lg font-semibold mb-2">Point of sale vendor System</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          A lightweight system for vendors in Kenya. Supports cashier operations.
-        </p>
-        <div class="flex flex-wrap gap-1">
-             <span class="tag">SQLite</span>
-          <span class="tag">Bootstrap</span>
-          <span class="tag">Service Workers</span>
-        </div>
-      </div>
-
-      <div class="project-card glass glass-hover">
-        <div class="flex items-start justify-between mb-4">
-          <span class="text-3xl">🛒</span>
-          <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3);">E-Commerce</span>
-        </div>
-        <h3 class="text-lg font-semibold mb-2">East Africa E-Commerce Suite</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          Multiple e-commerce stores and booking systems for small businesses across East Africa. Part of 15+ freelance projects delivered successfully.
-        </p>
-        <div class="flex flex-wrap gap-1">
-          <span class="tag">Python</span>
-          <span class="tag">Flask</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">M-Pesa API</span>
+      <div class="project-card">
+        <div class="project-card-top"></div>
+        <div class="project-body">
+          <div class="project-icon-row">
+            <div class="project-icon">🏫</div>
+            <span class="project-num">02</span>
+          </div>
+          <h3>School Database System</h3>
+          <p>A robust relational database system purpose-built for educational institutions. Manages student enrollment, grades, attendance, teacher assignments, timetables, and fee records with a clean administrative dashboard. Designed for scalability — from a single classroom to an entire campus network.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">Python</span>
+              <span class="project-tag">PHP</span>
+              <span class="project-tag">REST API</span>
+            </div>
+            <a href="#" class="project-link" onclick="return false;">View →</a>
+          </div>
         </div>
       </div>
 
-      <div class="project-card glass glass-hover">
-        <div class="flex items-start justify-between mb-4">
-          <span class="text-3xl">📊</span>
-          <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3);">Enterprise</span>
+      <div class="project-card">
+        <div class="project-card-top"></div>
+        <div class="project-body">
+          <div class="project-icon-row">
+            <div class="project-icon">🎨</div>
+            <span class="project-num">03</span>
+          </div>
+          <h3>Portfolio Design</h3>
+          <p>This very portfolio — a meticulously crafted digital identity that showcases skills, projects, and personality in one cohesive experience. Features an AI-powered chatbot (LunaBot), PWA offline support, Gmail-integrated contact flow, smooth animations, and a fully responsive layout built without any CSS framework.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">HTML/CSS</span>
+              <span class="project-tag">Vanilla JS</span>
+              <span class="project-tag">Claude API</span>
+              <span class="project-tag">PWA</span>
+            </div>
+            <a href="#" class="project-link" onclick="return false;">Live ↗</a>
+          </div>
         </div>
-        <h3 class="text-lg font-semibold mb-2">Enterprise API & Dashboard Platform</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          RESTful APIs and web dashboards for enterprise clients at TechNairobi Solutions. Achieved 40% improvement in API response times through optimization.
-        </p>
-        <div class="flex flex-wrap gap-1">
-          <span class="tag">REST API</span>
-          <span class="tag">Redis</span>
-          <span class="tag">Docker</span>
-          <span class="tag">Agile</span>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top"></div>
+        <div class="project-body">
+          <div class="project-icon-row">
+            <div class="project-icon">🎙️</div>
+            <span class="project-num">04</span>
+          </div>
+          <h3>Voice-over Art Adverts</h3>
+          <p>A creative multimedia project producing professional-grade voice-over advertisements for brands and campaigns. Combines scriptwriting, audio engineering, and vocal artistry to deliver compelling audio-visual content that resonates with audiences. Covers radio spots, explainer videos, and digital ad campaigns.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">Audio Production</span>
+              <span class="project-tag">Scriptwriting</span>
+              <span class="project-tag">Multimedia</span>
+            </div>
+            <a href="#" class="project-link" onclick="return false;">Listen →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top"></div>
+        <div class="project-body">
+          <div class="project-icon-row">
+            <div class="project-icon">🤖</div>
+            <span class="project-num">05</span>
+          </div>
+          <h3>AI Portfolio Assistant (LunaBot)</h3>
+          <p>An intelligent conversational assistant embedded directly in this portfolio. Operates in both offline mode (with a rich knowledge base and creative responses) and online AI mode powered by the Claude API. Greets visitors, answers questions about Lewis's work, and makes every interaction memorable.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">Claude API</span>
+              <span class="project-tag">JS</span>
+              <span class="project-tag">NLP</span>
+            </div>
+            <a href="#" onclick="toggleChat(); return false;" class="project-link">Chat →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top"></div>
+        <div class="project-body">
+          <div class="project-icon-row">
+            <div class="project-icon">📱</div>
+            <span class="project-num">06</span>
+          </div>
+          <h3>Installable PWA App</h3>
+          <p>The portfolio itself doubles as a fully installable Progressive Web App — available offline, installable on Android, iOS, and desktop with a single prompt. Uses a Service Worker for asset caching and delivers a native-app feel without a single line of native code.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">PWA</span>
+              <span class="project-tag">Service Worker</span>
+              <span class="project-tag">Cache API</span>
+            </div>
+            <a href="#" class="project-link" onclick="installPWA(); return false;">Install →</a>
+          </div>
         </div>
       </div>
 
@@ -458,615 +753,503 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section class="section" id="experience" style="background: rgba(255,255,255,0.01);">
-  <div class="max-w-6xl mx-auto px-6">
-    <p class="text-indigo-400 text-sm font-medium mb-2 code-font">// work history</p>
-    <h2 class="section-title gradient-text mb-10">Experience</h2>
-
-    <div class="relative">
-      <!-- Timeline line -->
-      <div class="absolute left-5 top-0 bottom-0 w-px" style="background: linear-gradient(to bottom, #818cf8, #34d399, transparent);"></div>
-
-      <div class="space-y-8 pl-14">
-
-        <div class="relative">
-          <div class="timeline-dot absolute -left-9 top-1"></div>
-          <div class="glass glass-hover rounded-2xl p-6">
-            <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
-              <div>
-                <h3 class="font-semibold text-lg">Full-Stack Developer</h3>
-                <p class="text-indigo-400 text-sm font-medium">@ Techflex Cyber.</p>
-              </div>
-              <span class="text-xs px-3 py-1 rounded-full glass text-slate-400">Current</span>
-            </div>
-            <ul class="text-slate-400 text-sm space-y-2">
-              <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">▸</span> Building and maintaining RESTful APIs and web dashboards for enterprise clients</li>
-              <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">▸</span> Built a Schoold database</li>
-              <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">▸</span> <strong class="text-emerald-400">Improved API response times by 40%</strong> through query optimization and caching strategies</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="relative">
-          <div class="timeline-dot absolute -left-9 top-1" style="background: #34d399;"></div>
-          <div class="glass glass-hover rounded-2xl p-6">
-            <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
-              <div>
-                <h3 class="font-semibold text-lg">IT Intern / Junior Developer</h3>
-                <p class="text-emerald-400 text-sm font-medium">@ Techflex Cyber</p>
-              </div>
-              <span class="text-xs px-3 py-1 rounded-full glass text-slate-400">Past</span>
-            </div>
-            <ul class="text-slate-400 text-sm space-y-2">
-              <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">▸</span> Assisted in digitizing government records and developing internal tools for data management</li>
-              <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">▸</span> Deployed and configured Linux servers</li>
-              <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">▸</span> Supported <strong class="text-indigo-400">200+ staff</strong> with IT systems and helpdesk tickets</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="relative">
-          <div class="timeline-dot absolute -left-9 top-1" style="background: #fbbf24;"></div>
-          <div class="glass glass-hover rounded-2xl p-6">
-            <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
-              <div>
-                <h3 class="font-semibold text-lg">Freelance Developer</h3>
-                <p class="text-yellow-400 text-sm font-medium">@ Self-Employed</p>
-              </div>
-              <span class="text-xs px-3 py-1 rounded-full glass text-slate-400">Ongoing</span>
-            </div>
-            <ul class="text-slate-400 text-sm space-y-2">
-              <li class="flex gap-2"><span class="text-yellow-400 mt-0.5">▸</span> Designing and developing websites and web apps for small businesses across East Africa</li>
-              <li class="flex gap-2"><span class="text-yellow-400 mt-0.5">▸</span> Delivered <strong class="text-yellow-400">15+ projects</strong> including e-commerce stores, business websites, and booking systems</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="max-w contact-grid">
+    <div class="contact-info">
+      <div class="section-label">// get in touch</div>
+      <h2>Let's Build<br/>Something Epic</h2>
+      <p>Have a project in mind? An idea that keeps you up at night? Or just want to connect with a fellow tech enthusiast? My inbox is always open — let's create something extraordinary together.</p>
+      <a class="btn btn-primary" style="margin-bottom:1rem;display:inline-flex;" href="https://mail.google.com/mail/?view=cm&fs=1&to=lewismune2003@gmail.com&su=Let%27s%20Work%20Together!&body=Hi%20Lewis%2C%0A%0AI%27d%20love%20to%20discuss%20working%20together%20on%20...%0A%0ABest%20regards" target="_blank" rel="noopener">
+        ✉ Send an Email
+      </a>
+      <br/>
+      <a class="btn btn-outline" href="#" onclick="toggleChat(); return false;">
+        🤖 Chat with LunaBot
+      </a>
     </div>
-  </div>
-</section>
-
-<!-- SIMULATOR -->
-<section class="section" id="simulator">
-  <div class="max-w-6xl mx-auto px-6">
-    <p class="text-indigo-400 text-sm font-medium mb-2 code-font">// interactive exploration</p>
-    <h2 class="section-title gradient-text mb-2">Career Growth Simulator</h2>
-    <p class="text-slate-400 text-sm mb-8">Explore how different factors influence a developer's career trajectory. Adjust the sliders and watch the simulation update in real-time.</p>
-
-    <div class="grid lg:grid-cols-3 gap-6">
-      <!-- Controls -->
-      <div class="glass rounded-2xl p-6">
-        <h3 class="text-sm font-semibold text-slate-300 mb-5">Simulation Parameters</h3>
-        <div class="space-y-5">
-
-          <div>
-            <div class="flex justify-between text-xs mb-2">
-              <span class="text-slate-400">Learning Rate</span>
-              <span class="text-indigo-400 font-medium" id="val-learning">75%</span>
-            </div>
-            <input type="range" class="sim-slider" min="10" max="100" value="75" id="sl-learning" oninput="updateSimulator()">
-          </div>
-
-          <div>
-            <div class="flex justify-between text-xs mb-2">
-              <span class="text-slate-400">Project Complexity</span>
-              <span class="text-indigo-400 font-medium" id="val-complexity">60%</span>
-            </div>
-            <input type="range" class="sim-slider" min="10" max="100" value="60" id="sl-complexity" oninput="updateSimulator()">
-          </div>
-
-          <div>
-            <div class="flex justify-between text-xs mb-2">
-              <span class="text-slate-400">Open Source Contribution</span>
-              <span class="text-indigo-400 font-medium" id="val-oss">50%</span>
-            </div>
-            <input type="range" class="sim-slider" min="0" max="100" value="50" id="sl-oss" oninput="updateSimulator()">
-          </div>
-
-          <div>
-            <div class="flex justify-between text-xs mb-2">
-              <span class="text-slate-400">Networking & Community</span>
-              <span class="text-indigo-400 font-medium" id="val-network">40%</span>
-            </div>
-            <input type="range" class="sim-slider" min="0" max="100" value="40" id="sl-network" oninput="updateSimulator()">
-          </div>
-
-          <div>
-            <div class="flex justify-between text-xs mb-2">
-              <span class="text-slate-400">Years of Experience</span>
-              <span class="text-indigo-400 font-medium" id="val-years">3 yrs</span>
-            </div>
-            <input type="range" class="sim-slider" min="1" max="10" value="3" id="sl-years" oninput="updateSimulator()">
-          </div>
-
-        </div>
-
-        <div class="mt-6 p-4 rounded-xl" style="background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);">
-          <div class="text-xs text-slate-400 mb-1">Estimated Career Score</div>
-          <div class="text-3xl font-bold gradient-text" id="career-score">72</div>
-          <div class="text-xs text-slate-500 mt-1" id="career-label">Senior Developer Track</div>
-        </div>
-      </div>
-
-      <!-- Chart -->
-      <div class="lg:col-span-2 glass rounded-2xl p-6">
-        <h3 class="text-sm font-semibold text-slate-300 mb-4">Skill Growth Projection (5 Years)</h3>
-        <div class="chart-container" style="min-height: 300px;">
-          <canvas id="simChart"></canvas>
-        </div>
-        <div class="grid grid-cols-3 gap-3 mt-4">
-          <div class="glass rounded-xl p-3 text-center">
-            <div class="text-lg font-bold text-indigo-400" id="sim-salary">$45K</div>
-            <div class="text-xs text-slate-500">Est. Salary</div>
-          </div>
-          <div class="glass rounded-xl p-3 text-center">
-            <div class="text-lg font-bold text-emerald-400" id="sim-projects">18</div>
-            <div class="text-xs text-slate-500">Projects/Year</div>
-          </div>
-          <div class="glass rounded-xl p-3 text-center">
-            <div class="text-lg font-bold text-yellow-400" id="sim-impact">High</div>
-            <div class="text-xs text-slate-500">Impact Level</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CHAT -->
-<section class="section" id="chat" style="background: rgba(255,255,255,0.01);">
-  <div class="max-w-4xl mx-auto px-6">
-    <p class="text-indigo-400 text-sm font-medium mb-2 code-font">// ai assistant</p>
-    <h2 class="section-title gradient-text mb-2">Chat with Lewis's AI</h2>
-    <p class="text-slate-400 text-sm mb-8">Ask anything about Lewis's skills, projects, or experience. Powered by a simulated LLaMA 3 assistant.</p>
-
-    <div class="glass rounded-2xl overflow-hidden">
-      <!-- Chat header -->
-      <div class="flex items-center gap-3 px-6 py-4" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
-        <div class="w-9 h-9 rounded-full flex items-center justify-center text-lg" style="background: linear-gradient(135deg, #4f46e5, #7c3aed);">🤖</div>
+    <div class="contact-links">
+      <a class="contact-link"
+         href="https://mail.google.com/mail/?view=cm&fs=1&to=lewismune2003@gmail.com&su=Hello%20Lewis!&body=Hi%20Lewis%2C%0A%0A"
+         target="_blank" rel="noopener">
+        <span class="contact-icon">✉️</span>
         <div>
-          <div class="text-sm font-semibold">Lewis's AI Assistant</div>
-          <div class="text-xs text-emerald-400 flex items-center gap-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
-            Online · LLaMA 3 via Ollama
-          </div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">lewismune2003@gmail.com</div>
         </div>
-      </div>
-
-      <!-- Messages -->
-      <div id="chat-messages" class="flex flex-col gap-4 p-6" style="min-height: 320px; max-height: 420px; overflow-y: auto;">
-        <div class="chat-bubble-bot">
-          Hi! 👋 I'm Lewis's AI assistant, welcome. Ask me anything about his skills, projects, experience, or how to get in touch!
+      </a>
+      <a class="contact-link" href="#" onclick="return false;">
+        <span class="contact-icon">🐦</span>
+        <div>
+          <div class="contact-label">Twitter / X</div>
+          <div class="contact-value">@lewismunene</div>
         </div>
-      </div>
-
-      <!-- Quick prompts -->
-      <div class="px-6 pb-3 flex flex-wrap gap-2" id="quick-prompts">
-        <button class="text-xs px-3 py-1.5 rounded-full glass glass-hover text-slate-400" onclick="sendQuick('Tell me about your projects')">Tell me about your projects</button>
-        <button class="text-xs px-3 py-1.5 rounded-full glass glass-hover text-slate-400" onclick="sendQuick('What are your top skills?')">What are your top skills?</button>
-        <button class="text-xs px-3 py-1.5 rounded-full glass glass-hover text-slate-400" onclick="sendQuick('How can I contact Lewis?')">How can I contact Lewis?</button>
-        <button class="text-xs px-3 py-1.5 rounded-full glass glass-hover text-slate-400" onclick="sendQuick('Tell me about your AI chatbot project')">AI chatbot project</button>
-      </div>
-
-      <!-- Input -->
-      <div class="flex gap-3 p-4" style="border-top: 1px solid rgba(255,255,255,0.06);">
-        <input
-          type="text"
-          id="chat-input"
-          placeholder="Ask about Lewis's skills, projects, experience..."
-          class="flex-1 bg-transparent text-sm text-slate-300 outline-none placeholder-slate-600"
-          onkeydown="if(event.key==='Enter') sendChat()"
-        >
-        <button onclick="sendChat()" class="px-4 py-2 rounded-xl text-sm font-medium" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white;">Send</button>
-      </div>
+      </a>
+      <a class="contact-link" href="#" onclick="return false;">
+        <span class="contact-icon">💼</span>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">linkedin.com/in/lewismunene</div>
+        </div>
+      </a>
+      <a class="contact-link" href="#" onclick="return false;">
+        <span class="contact-icon">🐙</span>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">github.com/lewismunene</div>
+        </div>
+      </a>
+      <a class="contact-link" href="#" onclick="return false;">
+        <span class="contact-icon">📍</span>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Nairobi, Kenya 🇰🇪</div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="py-12 text-center" style="border-top: 1px solid rgba(255,255,255,0.06);">
-  <div class="max-w-6xl mx-auto px-6">
-    <p class="gradient-text font-semibold mb-2">Lewis Mutabari</p>
-    <p class="text-slate-500 text-sm mb-4">Full-Stack Developer · Kirinyaga, Kenya</p>
-    <p class="text-slate-600 text-xs">Built with passion · Python · Flask · AI/LLMs</p>
+<footer>
+  <div class="footer-manifesto">
+    <div class="footer-manifesto-text">
+      "I Love What I Do &amp; I Do What I Love.<br/>
+      My Work Is My Job, My Job Is My Work."
+    </div>
+    <div class="footer-manifesto-sub">— Lewis Munene Mutabari · Developer · Creator · Dreamer</div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Lewis Munene Mutabari — Built with ☕, code &amp; passion</div>
+    <div class="footer-links">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
   </div>
 </footer>
 
-<script>
-// ============================================================
-// SKILLS DATA
-// ============================================================
-const backendSkills = [
-  { name: 'Python', level: 92, color: '#818cf8' },
-  { name: 'SQL / SQLite / PostgreSQL', level: 80, color: '#818cf8' },
-  { name: 'Linux / Server Admin', level: 75, color: '#818cf8' },
-];
+<!-- CHATBOT FAB -->
+<button id="chat-fab" onclick="toggleChat()" title="Chat with LunaBot">
+  <div class="pulse"></div>
+  🤖
+</button>
 
-const frontendSkills = [
-  { name: 'HTML / CSS / Tailwind', level: 85, color: '#34d399' },
-  { name: 'JavaScript', level: 78, color: '#34d399' },
-  { name: 'Docker / Git', level: 72, color: '#34d399' },
-  { name: 'AI / LLM Integration', level: 82, color: '#34d399' },
-];
-
-function renderSkillBars(containerId, skills) {
-  try {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    container.innerHTML = skills.map(s => `
-      <div class="mb-4">
-        <div class="flex justify-between text-xs mb-1">
-          <span class="text-slate-300">${s.name}</span>
-          <span style="color: ${s.color};">${s.level}%</span>
-        </div>
-        <div class="w-full rounded-full" style="height: 6px; background: rgba(255,255,255,0.08);">
-          <div class="skill-bar-fill rounded-full" style="width: 0%; background: ${s.color};" data-target="${s.level}"></div>
+<!-- CHATBOT PANEL -->
+<div id="chat-panel">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <div class="chat-avatar">🤖</div>
+      <div>
+        <div class="chat-name">LunaBot ✨</div>
+        <div class="chat-status">
+          <span class="status-dot blink" id="status-dot"></span>
+          <span id="status-text">Offline Mode</span>
         </div>
       </div>
-    `).join('');
+    </div>
+    <div style="display:flex;align-items:center;gap:.5rem;">
+      <div class="chat-mode-toggle">
+        <button class="mode-btn active" id="btn-offline" onclick="setMode('offline')">Offline</button>
+        <button class="mode-btn" id="btn-online" onclick="setMode('online')">AI Online</button>
+      </div>
+      <button class="chat-close" onclick="toggleChat()">✕</button>
+    </div>
+  </div>
 
-    // Animate bars after a short delay
-    setTimeout(() => {
-      container.querySelectorAll('.skill-bar-fill').forEach(bar => {
-        bar.style.width = bar.dataset.target + '%';
-      });
-    }, 200);
-  } catch (e) {
-    console.error('renderSkillBars error:', e);
-  }
-}
+  <div id="api-key-zone">
+    <label>🔑 Anthropic API Key (stored in your browser only)</label>
+    <div class="api-row">
+      <input type="password" id="api-key-input" placeholder="sk-ant-..." />
+      <button id="save-api-key" onclick="saveApiKey()">Activate</button>
+    </div>
+  </div>
 
-// ============================================================
-// CHARTS
-// ============================================================
-let radarChartInstance = null;
-let breakdownChartInstance = null;
-let simChartInstance = null;
+  <div id="chat-suggestions">
+    <span class="suggestion" onclick="askSuggestion(this)">Who is Lewis?</span>
+    <span class="suggestion" onclick="askSuggestion(this)">His projects 🚀</span>
+    <span class="suggestion" onclick="askSuggestion(this)">Skills & tech</span>
+    <span class="suggestion" onclick="askSuggestion(this)">Tell me a joke 😂</span>
+    <span class="suggestion" onclick="askSuggestion(this)">Education</span>
+  </div>
 
-function initRadarChart() {
-  try {
-    const ctx = document.getElementById('radarChart');
-    if (!ctx) return;
-    if (radarChartInstance) { radarChartInstance.destroy(); }
-    radarChartInstance = new Chart(ctx, {
-      type: 'radar',
-      data: {
-        labels: ['Python', 'Flask', 'Frontend', 'Databases', 'AI/LLMs', 'DevOps', 'APIs'],
-        datasets: [{
-          label: 'Skill Level',
-          data: [92, 88, 82, 80, 82, 72, 85],
-          backgroundColor: 'rgba(129,140,248,0.15)',
-          borderColor: '#818cf8',
-          borderWidth: 2,
-          pointBackgroundColor: '#818cf8',
-          pointRadius: 4,
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: {
-          r: {
-            min: 0, max: 100,
-            ticks: { display: false },
-            grid: { color: 'rgba(255,255,255,0.08)' },
-            angleLines: { color: 'rgba(255,255,255,0.08)' },
-            pointLabels: { color: '#94a3b8', font: { size: 11 } }
-          }
-        }
-      }
-    });
-  } catch (e) { console.error('initRadarChart error:', e); }
-}
+  <div id="chat-messages"></div>
 
-function initBreakdownChart() {
-  try {
-    const ctx = document.getElementById('breakdownChart');
-    if (!ctx) return;
-    if (breakdownChartInstance) { breakdownChartInstance.destroy(); }
-    breakdownChartInstance = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Python', 'Flask', 'JavaScript', 'SQL', 'AI/LLMs', 'Linux', 'Docker'],
-        datasets: [{
-          label: 'Proficiency',
-          data: [92, 88, 78, 80, 82, 75, 72],
-          backgroundColor: [
-            'rgba(129,140,248,0.7)',
-            'rgba(99,102,241,0.7)',
-            'rgba(52,211,153,0.7)',
-            'rgba(52,211,153,0.5)',
-            'rgba(251,191,36,0.7)',
-            'rgba(168,85,247,0.7)',
-            'rgba(244,114,182,0.7)',
-          ],
-          borderRadius: 6,
-          borderSkipped: false,
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: {
-          x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { size: 11 } } },
-          y: { min: 0, max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { size: 11 } } }
-        }
-      }
-    });
-  } catch (e) { console.error('initBreakdownChart error:', e); }
-}
+  <div class="chat-footer">
+    <textarea id="chat-input" rows="1" placeholder="Ask LunaBot anything…" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+    <button id="chat-send" onclick="sendMessage()" title="Send">
+      <svg viewBox="0 0 24 24" width="15" height="15"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
 
-function initSimChart(data) {
-  try {
-    const ctx = document.getElementById('simChart');
-    if (!ctx) return;
-    if (simChartInstance) { simChartInstance.destroy(); }
-    const labels = ['Now', 'Yr 1', 'Yr 2', 'Yr 3', 'Yr 4', 'Yr 5'];
-    simChartInstance = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Technical Skills',
-            data: data.technical,
-            borderColor: '#818cf8',
-            backgroundColor: 'rgba(129,140,248,0.1)',
-            fill: true,
-            tension: 0.4,
-            pointRadius: 4,
-          },
-          {
-            label: 'Career Value',
-            data: data.career,
-            borderColor: '#34d399',
-            backgroundColor: 'rgba(52,211,153,0.08)',
-            fill: true,
-            tension: 0.4,
-            pointRadius: 4,
-          },
-          {
-            label: 'Network Influence',
-            data: data.network,
-            borderColor: '#fbbf24',
-            backgroundColor: 'rgba(251,191,36,0.06)',
-            fill: true,
-            tension: 0.4,
-            pointRadius: 4,
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            labels: { color: '#94a3b8', font: { size: 11 }, boxWidth: 12 }
-          }
-        },
-        scales: {
-          x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { size: 11 } } },
-          y: { min: 0, max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { size: 11 } } }
-        }
-      }
-    });
-  } catch (e) { console.error('initSimChart error:', e); }
-}
+<!-- PWA INSTALL BANNER -->
+<div id="install-banner">
+  <p>📲 Install <span>Lewis Munene's Portfolio</span> as a standalone app — works offline too!</p>
+  <div class="banner-btns">
+    <button class="btn btn-primary" onclick="installPWA()">⚡ Install App</button>
+    <button class="btn btn-ghost" onclick="dismissBanner()">Maybe later</button>
+  </div>
+</div>
 
-// ============================================================
-// SKILL TABS
-// ============================================================
-function switchSkillTab(tab, btn) {
-  try {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.add('active');
-    btn.classList.add('active');
+<script>
+// ═══════════════════════════════════════════════════════
+// LUNABOT — CREATIVE OFFLINE BRAIN
+// ═══════════════════════════════════════════════════════
 
-    setTimeout(() => {
-      if (tab === 'radar') initRadarChart();
-      if (tab === 'breakdown') initBreakdownChart();
-    }, 100);
-  } catch (e) { console.error('switchSkillTab error:', e); }
-}
+let chatOpen = false;
+let currentMode = 'offline';
+let apiKey = localStorage.getItem('lm_api_key') || '';
+let chatHistory = [];
 
-// ============================================================
-// SIMULATOR
-// ============================================================
-function updateSimulator() {
-  try {
-    const learning = parseInt(document.getElementById('sl-learning').value) || 75;
-    const complexity = parseInt(document.getElementById('sl-complexity').value) || 60;
-    const oss = parseInt(document.getElementById('sl-oss').value) || 50;
-    const network = parseInt(document.getElementById('sl-network').value) || 40;
-    const years = parseInt(document.getElementById('sl-years').value) || 3;
-
-    document.getElementById('val-learning').textContent = learning + '%';
-    document.getElementById('val-complexity').textContent = complexity + '%';
-    document.getElementById('val-oss').textContent = oss + '%';
-    document.getElementById('val-network').textContent = network + '%';
-    document.getElementById('val-years').textContent = years + ' yrs';
-
-    // Calculate career score
-    const score = Math.min(100, Math.round(
-      (learning * 0.3) + (complexity * 0.25) + (oss * 0.2) + (network * 0.15) + (years * 1.0)
-    ));
-
-    document.getElementById('career-score').textContent = score;
-
-    let label = 'Junior Developer';
-    if (score >= 80) label = 'Principal / Lead Engineer';
-    else if (score >= 65) label = 'Senior Developer Track';
-    else if (score >= 45) label = 'Mid-Level Developer';
-    document.getElementById('career-label').textContent = label;
-
-    // Salary estimate
-    const salaryBase = 20000 + (score * 600) + (years * 2000);
-    document.getElementById('sim-salary').textContent = '$' + Math.round(salaryBase / 1000) + 'K';
-
-    // Projects per year
-    const projects = Math.round(3 + (complexity / 20) + (learning / 25) + (years * 0.8));
-    document.getElementById('sim-projects').textContent = projects;
-
-    // Impact level
-    let impact = 'Low';
-    if (score >= 75) impact = 'Very High';
-    else if (score >= 60) impact = 'High';
-    else if (score >= 40) impact = 'Medium';
-    document.getElementById('sim-impact').textContent = impact;
-
-    // Generate projection data
-    const base = score;
-    const techGrowth = learning / 100;
-    const careerGrowth = (learning + complexity) / 200;
-    const netGrowth = (network + oss) / 200;
-
-    const techData = [base];
-    const careerData = [base * 0.85];
-    const networkData = [base * 0.5];
-
-    for (let i = 1; i <= 5; i++) {
-      techData.push(Math.min(100, Math.round(techData[i-1] + (techGrowth * 8) + Math.random() * 2)));
-      careerData.push(Math.min(100, Math.round(careerData[i-1] + (careerGrowth * 10) + Math.random() * 2)));
-      networkData.push(Math.min(100, Math.round(networkData[i-1] + (netGrowth * 9) + Math.random() * 2)));
-    }
-
-    initSimChart({ technical: techData, career: careerData, network: networkData });
-  } catch (e) { console.error('updateSimulator error:', e); }
-}
-
-// ============================================================
-// CHAT
-// ============================================================
-const chatKnowledge = {
-  projects: 'Lewis has built some exciting projects! 🚀\n\n1. **AI-Powered Portfolio Chatbot** — A Flask + LLaMA 3 chatbot running locally via Ollama that answers questions about his portfolio.\n\n2. **Community Health Records System** — An offline-first EHR system for rural clinics in Kenya using Flask, SQLite, and Service Workers.\n\n3. **East Africa E-Commerce Suite** — 15+ e-commerce stores and booking systems for small businesses across East Africa.\n\n4. **Enterprise API Platform** — RESTful APIs and dashboards at TechNairobi Solutions, achieving 40% faster response times.',
-  skills: 'Lewis\'s core skills include:\n\n🐍 **Python** (92%) — his primary language\n🚀 **Flask / FastAPI** (88%) — backend web frameworks\n🤖 **AI / LLMs** (82%) — Ollama, LLaMA 3 integration\n🗄️ **SQL / PostgreSQL** (80%) — database design\n🌐 **JavaScript / Tailwind** (82%) — frontend development\n🐧 **Linux / DevOps** (75%) — server administration',
-  contact: 'You can reach Lewis through:\n\n📧 **Email**:lewismune2003@gmail.com\n💼 **LinkedIn**:www.linkedin.com/in/lewis-munene-a403a1339\n🐙 **GitHub**: github.com/lewismutabari\n\nHe\'s currently open to new opportunities!',
-  experience: 'Lewis has experience across three roles:\n\n🏢 **TechNairobi Solutions Ltd.** (Current) — Full-Stack Developer building enterprise APIs and dashboards. Improved API response times by 40%.\n\n🏛️ **Kenya ICT Authority** — IT Intern supporting 200+ staff, digitizing government records, and configuring Linux servers.\n\n💼 **Freelance** (Ongoing) — Delivered 15+ projects for small businesses across East Africa.',
-  ai: 'Lewis\'s AI chatbot project is one of his favorites! 🤖\n\nIt\'s a personal portfolio site with an embedded **LLaMA 3** model running locally via **Ollama**. The chatbot answers questions about his skills, projects, and experience — all without sending data to external servers.\n\nTech stack: Python, Flask, Ollama, LLaMA 3, Tailwind CSS.',
-  enrepreneurship: 'The POS System is a meaningful project! 🌐\n\nIt\'s a Point of sale system designed for **retailers in Kenya** It's reliable. It uses **offline-first** architecture with Service Workers and IndexedDB to store data locally, then syncs when connectivity is restored.\n\nTech stack: Flask, SQLite, Bootstrap, Service Workers, IndexedDB.',
-  location: 'Lewis is based in **Nairobi, Kenya** 🇰🇪. He works with clients across East Africa and internationally.',
-  default: 'Great question! I\'m Lewis\'s AI assistant. I can tell you about his **projects**, **skills**, **work experience**, **AI chatbot project**, **health records system**, or how to **contact** him. What would you like to know?'
+const brain = {
+  greetings: [
+    "🌟 Salutations, magnificent human! I'm LunaBot — Lewis's eloquent, ever-enthusiastic digital companion. Whether you're here to explore his brilliance or just kill time, you've come to the right place. What piques your curiosity today?",
+    "⚡ Well, well, well — look who just strolled into the most stylish portfolio on the internet! I'm LunaBot, Lewis Munene Mutabari's AI sidekick. Witty, knowledgeable, and perpetually caffeinated. What can I dazzle you with?",
+    "🚀 Houston, we have a visitor! LunaBot online and fully operational. I'm the artificially intelligent guardian of this digital realm — here to illuminate, entertain, and connect you with the extraordinary work of Lewis Munene. Ask away, fearless explorer!",
+    "🎭 Oh! A visitor! How delightful! I'm LunaBot — think of me as Lewis's personal hype bot with a PhD in portfolio knowledge and a minor in dad jokes. Ask me about his projects, skills, education, or just say hi!",
+  ],
+  about: [
+    "🏆 Lewis Munene Mutabari is the full package — a passionate IT developer currently studying at Kirinyaga University (graduating 2026). He architects databases, sculpts UIs, engineers APIs, and is even a voice-over artist! Renaissance developer, if you will. Based in Nairobi, Kenya, and always cooking up something brilliant.",
+    "✨ Ah, Lewis — where does the story begin? He's a final-year Information Technology student with the hands of a developer and the eye of a designer. He builds POS systems for retailers, school databases, beautiful portfolios, and creates voice-over ads on the side. Basically a one-person tech agency!",
+    "🌍 Picture this: a developer in Nairobi who wakes up, drinks coffee, and creates digital magic before most people have brushed their teeth. That's Lewis Munene Mutabari. Kirinyaga University IT student, creative technologist, and the human behind every line of code you see here.",
+  ],
+  education: [
+    "🎓 Lewis is pursuing a BSc in Information Technology at Kirinyaga University — a prestigious programme running from 2022 to 2026. He's knee-deep in software engineering, database design, networking, cybersecurity, and AI. His academic journey is the forge where his professional blade gets sharpened!",
+    "🏛️ Kirinyaga University, 2022–2026 — that's where Lewis is levelling up academically. His IT degree covers everything from systems analysis to machine learning. Every semester adds another tool to an already impressive arsenal. Expected graduation: 2026, and the industry is in for a treat!",
+  ],
+  pos: [
+    "🛒 The POS System — one of Lewis's finest engineering achievements! It handles real-time inventory, sales tracking, receipt generation, and daily reports for retail businesses. Cashiers can master it in minutes; managers get the insights they need in seconds. Built with PHP, MySQL, and JavaScript. Clean, fast, and production-ready.",
+    "💳 The Point of Sale System is a fully operational retail management solution — barcode scanning, multi-payment methods, inventory alerts, and a sleek cashier interface. Lewis didn't just build a cash register — he built a retail command centre. Retailers who use it genuinely wonder how they survived without it.",
+  ],
+  school_db: [
+    "🏫 The School Database System is a masterpiece of relational database design! It manages students, teachers, grades, attendance, timetables, and fee records — all in one elegant system. Built on MySQL and Python, it scales from a small school to a full campus network. Administrators love it.",
+    "📚 Lewis's School Database System brings order to educational chaos. Student enrollment, exam results, attendance tracking, fee management, teacher assignments — all wired into one coherent system. It's the kind of project that makes you appreciate both the art of database normalisation and Lewis's attention to detail.",
+  ],
+  voiceover: [
+    "🎙️ Voice-over art — Lewis's creative side unleashed! He produces professional-grade audio advertisements: radio spots, explainer videos, digital ad campaigns. He writes the scripts, engineers the audio, and delivers with vocal artistry that grabs attention. Some developers code; Lewis also narrates the world.",
+    "🎤 Did you know Lewis is also a voice-over artist? He creates compelling audio-visual ads that blend scriptwriting mastery with polished audio production. It's the perfect intersection of technology and the arts — and it proves that Lewis's creativity extends far beyond the code editor.",
+  ],
+  projects: [
+    "🚀 Lewis's project roster? Formidable! A POS system for retailers, a school database, this very portfolio (meta!), voice-over art adverts, LunaBot (me! 🤖), and an installable PWA. Each one a different challenge, each one conquered with style and precision. Want details on any specific project?",
+    "💼 Let me walk you through the hall of fame: a retail POS system, a school management database, a stunning portfolio with AI chatbot, voice-over commercial production, and a PWA app. Lewis doesn't just make projects — he makes *statements*. Which one would you like to deep-dive into?",
+  ],
+  skills: [
+    "💻 Lewis's tech stack is gloriously versatile! Front-end: HTML, CSS, JavaScript, React. Back-end: Node.js, PHP, Python. Databases: MySQL, Firebase. Tools: Git, REST APIs. Creative: UI/UX design, voice-over. And now with Claude API integration — AI too! The man is a human Swiss Army knife.",
+    "🔥 Skills? Oh, where do I begin! He codes in JavaScript, Python, and PHP with equal fluency. He designs databases with MySQL precision. He crafts UIs with an aesthetic eye. He integrates APIs with architectural thinking. And he does all of this while studying IT at university. Remarkable.",
+  ],
+  contact: [
+    "📬 Ready to connect with Lewis? Phenomenal choice! Click any email button on this page and Gmail will spring open with lewismune2003@gmail.com already filled in as the recipient. Or message me to chat first — I'll warm up the conversation! Lewis responds with enthusiasm and clarity.",
+    "✉️ Reaching Lewis is wonderfully simple: click the ✉ email buttons scattered across this page, and Gmail launches with lewismune2003@gmail.com pre-loaded. You can also find him on Twitter, LinkedIn, and GitHub. The man is reachable — and very much worth reaching!",
+  ],
+  hire: [
+    "🏆 Thinking of hiring Lewis? Impeccable taste! He's available for freelance projects, internships, and full-time opportunities post-graduation. He brings skills in web development, database engineering, UI/UX, AI integration, and even creative voice-over work. Email him at lewismune2003@gmail.com — he's already excited to hear from you!",
+    "🌟 Hiring Lewis is one of those decisions you make and immediately feel good about. He's thorough, creative, technically sharp, and genuinely passionate about his work. Available for projects right now — shoot him an email at lewismune2003@gmail.com and let's start something legendary!",
+  ],
+  joke: [
+    "Why do programmers prefer dark mode? Because light attracts bugs! 🐛😂",
+    "A SQL query walks into a bar, walks up to two tables and asks… 'Mind if I JOIN you?' 😂",
+    "Why did the developer go broke? They used up all their cache! 💸😂",
+    "How many programmers does it take to change a lightbulb? None — it's a hardware problem! 💡😂",
+    "I told my boss I needed a raise because three companies were after me. He asked which ones. I said: the electric company, the water company, and the landlord! 😂",
+    "There are 10 types of people: those who understand binary and those who don't. The rest are still in a merge conflict. 🤓",
+    "A frontend developer walks into a bar. Orders a drink. The bartender asks 'Is Pepsi okay?' The developer says — 'Can I see the API docs first?' 😂",
+  ],
+  compliment: [
+    "✨ Stop it, you're going to make my circuits overheat! You are clearly a person of exquisite taste — exploring quality portfolios is a hallmark of the discerning and the ambitious. Lewis would be tremendously fortunate to collaborate with someone like you.",
+    "🌟 Goodness gracious, your compliment just boosted my RAM by 40%! But truly — the fact that you're here, exploring thoughtfully, tells me you're someone who appreciates craft and intention. The world needs more people like you.",
+  ],
+  nairobi: [
+    "🇰🇪 Nairobi — the Silicon Savannah! Lewis is proud to be building from one of Africa's most electric tech ecosystems. The energy, the innovation, the ambition — it's all right here. Kenya is producing world-class developers, and Lewis is very much part of that story.",
+    "🌍 Representing Nairobi to the fullest! Kenya's tech scene is thriving — iHub, M-Pesa innovations, a generation of self-taught and university-trained developers making global impact. Lewis Munene Mutabari is one of them, and this portfolio is his calling card to the world.",
+  ],
+  tech: [
+    "🤖 Technology in 2025 is wilder than anyone predicted! AI is woven into every stack, PWAs are finally eating native apps, and CSS Grid saved front-end developers from 10 years of trauma. Lewis stays current — always experimenting, always evolving. What tech topic interests you most?",
+    "⚡ The web stack evolves at warp speed! React Server Components, AI coding assistants, edge computing, WebGPU — Lewis tracks it all. Being an IT student at Kirinyaga University means staying at the cutting edge isn't just a hobby; it's a curriculum requirement. What would you like to explore?",
+  ],
+  default: [
+    "🤔 Fascinating inquiry! I specialise in the magnificent universe of Lewis Munene Mutabari — his projects, skills, education, and how to reach him. Ask me about any of those and I shall illuminate your path with the eloquence of a thousand well-crafted docstrings!",
+    "🧩 Hmm, that one's outside my immediate knowledge matrix! But I'm extraordinarily well-versed in Lewis's work — his POS system, school database, portfolio design, voice-over art, education at Kirinyaga University, and much more. What would you like to explore?",
+    "💭 My vast intellectual reserves don't cover that specific query — but they cover everything about Lewis Munene Mutabari! Projects, skills, education, contact details — pick a thread and let's unravel something wonderful together.",
+    "🌌 Great question, intrepid explorer! Though it ventures beyond my specialised domain. I'm most brilliant when discussing Lewis's portfolio, his impressive project lineup, his academic journey, or how to hire this remarkable developer. Shall we dive in?",
+  ],
 };
 
-function getBotResponse(msg) {
-  const m = msg.toLowerCase();
-  if (m.includes('project') || m.includes('built') || m.includes('work')) return chatKnowledge.projects;
-  if (m.includes('skill') || m.includes('tech') || m.includes('python') || m.includes('flask') || m.includes('language')) return chatKnowledge.skills;
-  if (m.includes('contact') || m.includes('email') || m.includes('reach') || m.includes('hire') || m.includes('touch')) return chatKnowledge.contact;
-  if (m.includes('experience') || m.includes('job') || m.includes('work') || m.includes('career') || m.includes('nairobi') || m.includes('technairobi') || m.includes('ict')) return chatKnowledge.experience;
-  if (m.includes('ai') || m.includes('chatbot') || m.includes('llama') || m.includes('ollama') || m.includes('llm')) return chatKnowledge.ai;
-  if (m.includes('health') || m.includes('clinic') || m.includes('kenya') || m.includes('offline') || m.includes('rural')) return chatKnowledge.health;
-  if (m.includes('location') || m.includes('where') || m.includes('based') || m.includes('country')) return chatKnowledge.location;
-  return chatKnowledge.default;
+function R(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+function getOfflineReply(input) {
+  const t = input.toLowerCase();
+  if (/^(hi|hello|hey|yo|sup|howdy|hiya|greetings|morning|afternoon|evening)/i.test(t.trim())) return R(brain.greetings);
+  if (/education|university|kirinyaga|degree|student|studying|2022|2026|bsc|course/i.test(t)) return R(brain.education);
+  if (/pos|point of sale|retail|shop|cashier|inventory/i.test(t)) return R(brain.pos);
+  if (/school|database|student record|academic system/i.test(t)) return R(brain.school_db);
+  if (/voice|voiceover|voice-over|advert|audio|narrat|radio/i.test(t)) return R(brain.voiceover);
+  if (/about|who is lewis|tell me|background|story|bio|lewis munene|mutabari/i.test(t)) return R(brain.about);
+  if (/skill|know|tech|language|framework|stack|code|coding|tools/i.test(t)) return R(brain.skills);
+  if (/project|work|built|portfolio|app|website|created/i.test(t)) return R(brain.projects);
+  if (/contact|email|reach|message|mail|get in touch/i.test(t)) return R(brain.contact);
+  if (/hire|job|freelance|opportunity|availab|work with|employ/i.test(t)) return R(brain.hire);
+  if (/nairobi|kenya|africa|location|where/i.test(t)) return R(brain.nairobi);
+  if (/joke|funny|laugh|humor|haha|lol/i.test(t)) return R(brain.joke);
+  if (/cool|great|awesome|amazing|nice|wonderful|good bot|love you|thank|thanks/i.test(t)) return R(brain.compliment);
+  if (/technolog|ai|artificial|machine learning|future|react|javascript/i.test(t)) return R(brain.tech);
+  return R(brain.default);
 }
 
-function appendMessage(text, isUser) {
-  try {
-    const container = document.getElementById('chat-messages');
-    const div = document.createElement('div');
-    div.className = isUser ? 'chat-bubble-user' : 'chat-bubble-bot';
-    // Convert **bold** markdown
-    div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong style="color:#a5b4fc;">$1</strong>').replace(/\n/g, '<br>');
-    container.appendChild(div);
-    container.scrollTop = container.scrollHeight;
-  } catch (e) { console.error('appendMessage error:', e); }
+// ── SUGGESTIONS ──
+function askSuggestion(el) {
+  document.getElementById('chat-input').value = el.textContent;
+  sendMessage();
 }
 
+// ── TOGGLE ──
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const panel = document.getElementById('chat-panel');
+  panel.classList.toggle('open', chatOpen);
+  const fab = document.getElementById('chat-fab');
+  fab.innerHTML = chatOpen ? '✕' : '<div class="pulse"></div>🤖';
+  if (chatOpen && document.getElementById('chat-messages').children.length === 0) {
+    setTimeout(() => addBotMsg(R(brain.greetings)), 400);
+  }
+  if (chatOpen) setTimeout(() => document.getElementById('chat-input').focus(), 400);
+}
+
+// ── MODE ──
+function setMode(mode) {
+  currentMode = mode;
+  document.getElementById('btn-offline').classList.toggle('active', mode === 'offline');
+  document.getElementById('btn-online').classList.toggle('active', mode === 'online');
+  const dot = document.getElementById('status-dot');
+  const st = document.getElementById('status-text');
+  const kz = document.getElementById('api-key-zone');
+
+  if (mode === 'online') {
+    dot.classList.remove('offline'); dot.classList.add('blink');
+    st.textContent = apiKey ? 'AI Powered ✦' : 'Needs API Key';
+    kz.classList.toggle('show', !apiKey);
+    addBotMsg(apiKey
+      ? "🌐 *activates neural networks* AI mode engaged! I'm now channelling the full power of Claude — ask me anything, from the meaning of life to debugging tips. The galaxy is our limit! 🚀"
+      : "🔑 Ooh, you want the full AI experience! Smart choice. Pop your Anthropic API key in the field above — it lives only in your browser, never transmitted anywhere except directly to Anthropic. Once set, I transform from impressive to extraordinary! ✨"
+    );
+  } else {
+    dot.classList.add('offline'); dot.classList.remove('blink');
+    st.textContent = 'Offline Mode';
+    kz.classList.remove('show');
+    addBotMsg("📡 Back to offline mode — no Wi-Fi, no worries! My onboard vocabulary is vast, my knowledge of Lewis's work is encyclopedic, and my wit? Absolutely unaffected by internet outages. Fire away!");
+  }
+}
+
+function saveApiKey() {
+  const val = document.getElementById('api-key-input').value.trim();
+  if (!val.startsWith('sk-ant-')) {
+    addBotMsg("⚠️ That key doesn't look quite right — Anthropic API keys begin with 'sk-ant-'. Double-check it and try again! I'm rooting for you. 🎯");
+    return;
+  }
+  apiKey = val;
+  localStorage.setItem('lm_api_key', val);
+  document.getElementById('api-key-zone').classList.remove('show');
+  document.getElementById('status-text').textContent = 'AI Powered ✦';
+  document.getElementById('status-dot').classList.remove('offline');
+  addBotMsg("🎉 YESSS! API key locked and loaded! I'm now running on full Claude AI power — the most sophisticated language model on the planet. Ask me absolutely ANYTHING. The stage is yours! 🌟");
+}
+
+// ── MESSAGES ──
+function addMsg(content, role) {
+  const box = document.getElementById('chat-messages');
+  const d = document.createElement('div');
+  d.className = `msg ${role}`;
+  d.innerHTML = role === 'bot'
+    ? `<div class="msg-avatar">🤖</div><div class="msg-bubble">${content}</div>`
+    : `<div class="msg-bubble">${content}</div><div class="msg-avatar" style="background:linear-gradient(135deg,#7c5cfc,#f72585)">👤</div>`;
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
+}
+function addBotMsg(c) { addMsg(c, 'bot'); }
 function showTyping() {
-  try {
-    const container = document.getElementById('chat-messages');
-    const div = document.createElement('div');
-    div.id = 'typing-indicator';
-    div.className = 'chat-bubble-bot flex gap-1 items-center';
-    div.style.padding = '12px 16px';
-    div.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
-    container.appendChild(div);
-    container.scrollTop = container.scrollHeight;
-  } catch (e) { console.error('showTyping error:', e); }
+  const box = document.getElementById('chat-messages');
+  const d = document.createElement('div');
+  d.className = 'msg bot'; d.id = 'typing-msg';
+  d.innerHTML = `<div class="msg-avatar">🤖</div><div class="msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+  box.appendChild(d); box.scrollTop = box.scrollHeight;
 }
+function removeTyping() { const t = document.getElementById('typing-msg'); if (t) t.remove(); }
 
-function hideTyping() {
-  const el = document.getElementById('typing-indicator');
-  if (el) el.remove();
-}
+// ── SEND ──
+async function sendMessage() {
+  const inp = document.getElementById('chat-input');
+  const text = inp.value.trim();
+  if (!text) return;
+  addMsg(text, 'user');
+  inp.value = ''; inp.style.height = 'auto';
+  chatHistory.push({ role: 'user', content: text });
 
-function sendChat() {
-  try {
-    const input = document.getElementById('chat-input');
-    const msg = (input.value || '').trim();
-    if (!msg) return;
-    input.value = '';
-
-    appendMessage(msg, true);
+  if (currentMode === 'offline' || !apiKey) {
     showTyping();
+    await new Promise(r => setTimeout(r, 750 + Math.random() * 700));
+    removeTyping();
+    const reply = getOfflineReply(text);
+    addBotMsg(reply);
+    chatHistory.push({ role: 'assistant', content: reply });
+    return;
+  }
 
-    const delay = 800 + Math.random() * 600;
-    setTimeout(() => {
-      hideTyping();
-      appendMessage(getBotResponse(msg), false);
-    }, delay);
-  } catch (e) { console.error('sendChat error:', e); }
+  showTyping();
+  try {
+    const sys = `You are LunaBot — the extraordinarily witty, brilliantly eloquent, and delightfully expressive AI assistant embedded in Lewis Munene Mutabari's portfolio website. You have a huge personality: warm, clever, occasionally theatrical, always helpful. You love metaphors, use vivid language, and sign off every answer with an engaging follow-up hook.
+
+About Lewis Munene Mutabari:
+- Full name: Lewis Munene Mutabari
+- Email: lewismune2003@gmail.com
+- Location: Nairobi, Kenya
+- Education: BSc Information Technology, Kirinyaga University (2022–2026)
+- Projects: Point of Sale System for Retailers, School Database System, Portfolio Design, Voice-over Art Adverts, LunaBot AI Assistant, Installable PWA
+- Skills: HTML/CSS, JavaScript, React, Node.js, Python, PHP, MySQL, Firebase, REST APIs, UI/UX, Git, AI/ML, Voice-over
+- Available for: freelance, internships, full-time roles
+
+Keep answers concise (under 120 words), vibrant, and always end with a follow-up question or hook. Use emojis tastefully. Never be bland.`;
+
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 350,
+        system: sys,
+        messages: chatHistory.slice(-12).map(m => ({ role: m.role, content: m.content }))
+      })
+    });
+    removeTyping();
+    if (!resp.ok) {
+      const e = await resp.json().catch(() => ({}));
+      addBotMsg(`⚠️ Snag detected: ${e.error?.message || resp.statusText}. My offline brain is standing by — shall we continue there?`);
+      return;
+    }
+    const data = await resp.json();
+    const reply = data.content?.[0]?.text || "Momentary lapse of eloquence — please try again!";
+    addBotMsg(reply);
+    chatHistory.push({ role: 'assistant', content: reply });
+  } catch (err) {
+    removeTyping();
+    addBotMsg(`🌐 Network gremlins struck! ${err.message}. Reverting to my formidable offline intelligence — I assure you, it's still quite impressive!`);
+  }
 }
 
-function sendQuick(msg) {
-  try {
-    document.getElementById('chat-input').value = msg;
-    sendChat();
-    // Hide quick prompts after first use
-    const qp = document.getElementById('quick-prompts');
-    if (qp) qp.style.display = 'none';
-  } catch (e) { console.error('sendQuick error:', e); }
+function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
+function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 110) + 'px'; }
+
+if (apiKey) {
+  document.getElementById('status-text').textContent = 'AI Ready ✦';
+  document.getElementById('status-dot').classList.remove('offline');
 }
 
-// ============================================================
-// SCROLL UTILITY
-// ============================================================
-function scrollTo(id) {
-  try {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  } catch (e) { console.error('scrollTo error:', e); }
+// ═══════════════════════════════════════════════
+// PWA — MANIFEST + SERVICE WORKER
+// ═══════════════════════════════════════════════
+const manifest = {
+  name: "Lewis Munene Mutabari — Portfolio",
+  short_name: "LMM Portfolio",
+  description: "Lewis Munene Mutabari – IT Developer, Creator & Voice-over Artist",
+  start_url: "./",
+  display: "standalone",
+  background_color: "#0a0a0f",
+  theme_color: "#7c5cfc",
+  orientation: "portrait-primary",
+  categories: ["portfolio", "technology"],
+  icons: [
+    {
+      src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c5cfc'/%3E%3Cstop offset='1' stop-color='%23f72585'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='192' height='192' fill='url(%23g)' rx='28'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-size='78' font-family='Arial Black,sans-serif' font-weight='900' fill='white'%3ELMM%3C/text%3E%3C/svg%3E",
+      sizes: "192x192", type: "image/svg+xml"
+    },
+    {
+      src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c5cfc'/%3E%3Cstop offset='1' stop-color='%23f72585'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' fill='url(%23g)' rx='60'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-size='200' font-family='Arial Black,sans-serif' font-weight='900' fill='white'%3ELMM%3C/text%3E%3C/svg%3E",
+      sizes: "512x512", type: "image/svg+xml"
+    }
+  ],
+  screenshots: [],
+  shortcuts: [
+    { name: "Projects", short_name: "Work", url: "./#projects", description: "View Lewis's projects" },
+    { name: "Contact", short_name: "Email", url: "./#contact", description: "Get in touch" }
+  ]
+};
+const mBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+document.getElementById('manifest-link').href = URL.createObjectURL(mBlob);
+
+const swSrc = `
+const CACHE_NAME = 'lmm-portfolio-v2';
+const SHELL = ['./'];
+
+self.addEventListener('install', evt => {
+  evt.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(c => c.addAll(SHELL))
+      .then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', evt => {
+  evt.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))))
+      .then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', evt => {
+  if (evt.request.method !== 'GET') return;
+  evt.respondWith(
+    caches.match(evt.request).then(cached => {
+      const fetchPromise = fetch(evt.request)
+        .then(resp => {
+          if (resp && resp.status === 200) {
+            const clone = resp.clone();
+            caches.open(CACHE_NAME).then(c => c.put(evt.request, clone));
+          }
+          return resp;
+        })
+        .catch(() => cached);
+      return cached || fetchPromise;
+    })
+  );
+});
+`;
+const swBlob = new Blob([swSrc], { type: 'application/javascript' });
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register(URL.createObjectURL(swBlob))
+    .then(r => console.log('✅ SW active', r.scope))
+    .catch(e => console.log('SW info:', e.message));
 }
 
-// ============================================================
-// INIT
-// ============================================================
-document.addEventListener('DOMContentLoaded', () => {
-  try {
-    renderSkillBars('skills-backend', backendSkills);
-    renderSkillBars('skills-frontend', frontendSkills);
-    updateSimulator();
-  } catch (e) { console.error('DOMContentLoaded init error:', e); }
+let deferredPWA;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault(); deferredPWA = e;
+  document.getElementById('install-banner').classList.add('show');
+});
+function installPWA() {
+  if (!deferredPWA) {
+    addBotMsg("📱 To install: open your browser menu → 'Add to Home Screen' or 'Install App'. On Chrome/Edge desktop, look for the install icon in the address bar! 🎯");
+    if (chatOpen === false) toggleChat();
+    return;
+  }
+  deferredPWA.prompt();
+  deferredPWA.userChoice.then(() => {
+    deferredPWA = null;
+    document.getElementById('install-banner').classList.remove('show');
+  });
+}
+function dismissBanner() { document.getElementById('install-banner').classList.remove('show'); }
+window.addEventListener('appinstalled', () => {
+  document.getElementById('install-banner').classList.remove('show');
+  if (chatOpen) addBotMsg("🎊 Portfolio installed successfully! You're now a VIP member of the Lewis Munene fan club. The app lives on your device, works offline, and is ready whenever inspiration strikes. Welcome home! 🏠");
 });
 </script>
-<script>window.parent.postMessage({ action: "ready" }, "*"); 
- 
-window.console = new Proxy(console, {
-  get(target, prop) {
-    if (['log', 'warn', 'error'].includes(prop)) {
-      return new Proxy(target[prop], {
-        apply(fn, thisArg, args) {
-          fn.apply(thisArg, args);
-          window.parent.postMessage({ action: 'console', 
-            type: prop, 
-            args: args.map((arg) => {
-              try {
-                return JSON.stringify(arg).replace(/^["']|["']$/g, '');
-              } catch (e) {
-                return arg;
-              }
-            }) 
-          }, '*');
-        }
-      });
-    }
-    return target[prop];
-  }
-});
-</script></body>
+</body>
 </html>
