@@ -4,68 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
-    <style>
-        body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            transition: background-color 0.5s;
-        }
-        h1, h2, h3 {
-            text-align: center;
-            animation: fadeIn 1s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .hero { padding: 50px; text-align: center; }
-        .about, .skills, .projects, .experience, .simulator, .chat { padding: 20px; }
-        .dark-theme { background-color: #121212; color: #ffffff; }
-        .light-theme { background-color: #ffffff; color: #000000; }
-    </style>
-    <script>
-        // Sample JavaScript for interactive elements
-        function toggleTheme() {
-            const body = document.body;
-            body.classList.toggle('dark-theme');
-            body.classList.toggle('light-theme');
-        }
-    </script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
-<body class="dark-theme">
-    <div class="hero">
+<body>
+    <!-- Hero Section -->
+    <section id="hero" style="background: linear-gradient(220deg, #ff7e5f, #feb47b); animation: gradient 15s ease infinite;">
         <h1>Welcome to My Portfolio</h1>
-        <button onclick="toggleTheme()">Toggle Dark/Light Theme</button>
-    </div>
-    <div class="about">
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
         <h2>About Me</h2>
-        <p>Brief introduction about yourself.</p>
-    </div>
-    <div class="skills">
+        <div class="metrics">
+            <p>Experience: 5 Years</p>
+            <p>Projects Completed: 20+</p>
+            <p>Technologies: HTML, CSS, JS, React, Node.js</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
         <h2>Skills</h2>
-        <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>React</li>
-        </ul>
-    </div>
-    <div class="projects">
-        <h2>My Projects</h2>
-        <p>Details about various projects.</p>
-    </div>
-    <div class="experience">
-        <h2>Experience</h2>
-        <p>Summary of professional experience.</p>
-    </div>
-    <div class="simulator">
-        <h2>Simulator Feature</h2>
-        <p>Information about the simulator.</p>
-    </div>
-    <div class="chat">
-        <h2>Chat Feature</h2>
-        <p>Details about the chat functionality.</p>
-    </div>
+        <div class="tabs">
+            <button id="overview-btn">Overview</button>
+            <button id="radar-btn">Radar Chart</button>
+            <button id="breakdown-btn">Breakdown</button>
+        </div>
+        <div id="skills-content">
+            <div id="overview" class="tab-content">Overview of my skills.</div>
+            <div id="radar" class="tab-content">[Radar Chart Here]</div>
+            <div id="breakdown" class="tab-content">Breakdown of skills.</div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="project-list">
+            <div class="project">Project 1</div>
+            <div class="project">Project 2</div>
+            <div class="project">Project 3</div>
+            <div class="project">Project 4</div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline Section -->
+    <section id="experience">
+        <h2>Experience Timeline</h2>
+        <div class="timeline">[Timeline Here]</div>
+    </section>
+
+    <!-- Career Growth Simulator -->
+    <section id="growth-simulator">
+        <h2>Career Growth Simulator</h2>
+        <input type="range" min="0" max="100" value="50" class="slider" />
+    </section>
+
+    <!-- AI Chat Powered by LLaMA 3 -->
+    <section id="ai-chat">
+        <h2>AI Chat</h2>
+        <div>[AI Chat Interface Here]</div>
+    </section>
 </body>
 </html>
+
+<style>
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+</style>
