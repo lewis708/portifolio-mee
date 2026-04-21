@@ -1,35 +1,1072 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lewis Munene Mutabari — Full-Stack Developer Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0e1a;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+
+  /* Animated gradient background */
+  .hero-bg {
+    background: linear-gradient(135deg, #0a0e1a 0%, #0f1729 40%, #0a1628 70%, #0d1117 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+    top: -100px; left: -100px;
+    animation: pulse-glow 6s ease-in-out infinite;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%);
+    bottom: 0; right: 0;
+    animation: pulse-glow 8s ease-in-out infinite reverse;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+  }
+
+  .glass {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .glass-hover {
+    transition: all 0.3s ease;
+  }
+  .glass-hover:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(99,102,241,0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(99,102,241,0.15);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #818cf8, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .skill-bar-fill {
+    height: 6px;
+    border-radius: 3px;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .tab-btn {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #94a3b8;
+  }
+  .tab-btn.active {
+    background: rgba(99,102,241,0.2);
+    border-color: rgba(99,102,241,0.5);
+    color: #818cf8;
+  }
+  .tab-btn:hover:not(.active) {
+    background: rgba(255,255,255,0.05);
+    color: #e2e8f0;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .chart-container {
+    position: relative;
+    min-height: 260px;
+    max-height: 380px;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #818cf8;
+    border: 2px solid #0a0e1a;
+    box-shadow: 0 0 0 3px rgba(129,140,248,0.3);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .chat-bubble-user {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    border-radius: 18px 18px 4px 18px;
+    padding: 10px 16px;
+    max-width: 80%;
+    align-self: flex-end;
+    font-size: 0.875rem;
+  }
+  .chat-bubble-bot {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px 18px 18px 4px;
+    padding: 10px 16px;
+    max-width: 85%;
+    align-self: flex-start;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .typing-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #818cf8;
+    animation: typing 1.2s infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
+  }
+
+  .project-card {
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    background: rgba(99,102,241,0.15);
+    border: 1px solid rgba(99,102,241,0.3);
+    color: #a5b4fc;
+    margin: 2px;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 4px 0;
+  }
+  .nav-link:hover { color: #818cf8; }
+
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .metric-card {
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .sim-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.1);
+    outline: none;
+  }
+  .sim-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #818cf8;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(129,140,248,0.5);
+  }
+
+  .code-font { font-family: 'Fira Code', monospace; }
+
+  .scroll-indicator {
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0e1a; }
+  ::-webkit-scrollbar-thumb { background: rgba(129,140,248,0.3); border-radius: 3px; }
+
+  .section { padding: 80px 0; }
+
+  @media (max-width: 768px) {
+    .section { padding: 48px 0; }
+    .section-title { font-size: 1.4rem; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Portfolio</h1>
-    </header>
-    <main>
-        <section>
-            <h2>About Me</h2>
-            <p>Passionate web developer with experience in creating dynamic websites.</p>
-        </section>
-        <section>
-            <h2>Projects</h2>
-            <ul>
-                <li>Project 1: Website Redesign</li>
-                <li>Project 2: E-commerce Application</li>
-                <li>Project 3: Blogging Platform</li>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 glass" style="padding: 14px 0;">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+    <span class="code-font gradient-text font-semibold text-sm">lewis M mutabari</span>
+    <div class="hidden md:flex gap-6">
+      <span class="nav-link" onclick="scrollTo('About')">About</span>
+      <span class="nav-link" onclick="scrollTo('Skills')">Skills</span>
+      <span class="nav-link" onclick="scrollTo('Projects')">Projects</span>
+      <span class="nav-link" onclick="scrollTo('Experience')">Experience</span>
+      <span class="nav-link" onclick="scrollTo('Simulator')">Simulator</span>
+      <span class="nav-link" onclick="scrollTo('Chat')">Chat</span>
+    </div>
+    <a href="mailto:lewismune2003@email.com" class="text-xs px-4 py-2 rounded-lg font-medium" style="background: rgba(99,102,241,0.2); border: 1px solid rgba(99,102,241,0.4); color: #818cf8;">lewismune2003@email</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-bg min-h-screen flex items-center justify-center relative" style="padding-top: 80px;">
+  <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs text-emerald-400 mb-8" style="border-color: rgba(52,211,153,0.3);">
+      <span class="w-2 h-2 rounded-full bg-emerald-400" style="animation: pulse 2s infinite;"></span>
+      Available for opportunities
+    </div>
+    <h1 class="text-5xl md:text-7xl font-800 mb-4 leading-tight" style="font-weight: 800;">
+      Lewis Munene Mutabari
+    </h1>
+    <p class="text-xl md:text-2xl gradient-text font-semibold mb-6">Full-Stack Developer & IT Professional</p>
+    <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+      Passionate IT professional based in Kenya. I turn complex problems into clean, efficient solutions — one line of code at a time.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3 mb-10">
+      <span class="tag" style="font-size:0.85rem; padding: 6px 14px;">Python 🐍</span>
+      <span class="tag" style="font-size:0.85rem; padding: 6px 14px;">Full-Stack 💻</span>
+    </div>
+    <div class="flex justify-center gap-4 mb-12">
+      <a href="https://github.com/lewis708" class="glass glass-hover px-6 py-3 rounded-xl text-sm font-medium flex items-center gap-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/lewismutabari" target="_blank" class="glass glass-hover px-6 py-3 rounded-xl text-sm font-medium flex items-center gap-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#0077b5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:lewismune2003@gmail.com" class="glass glass-hover px-6 py-3 rounded-xl text-sm font-medium flex items-center gap-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        Email
+      </a>
+    </div>
+    <div class="scroll-indicator text-slate-500 text-xs flex flex-col items-center gap-1">
+      <span>lewismune2003@email</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-indigo-400 text-sm font-medium mb-2 code-font">// about me</p>
+        <h2 class="section-title gradient-text">Crafting Digital Experiences</h2>
+        <p class="text-slate-400 leading-relaxed mb-6">
+          I'm a dedicated software developer based in <strong class="text-emerald-400">Kenya</strong> with a strong foundation in Information Technology. I love crafting digital experiences that are both functional and beautiful.
+        </p>
+        <p class="text-slate-400 leading-relaxed mb-8">
+          When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the tech community.
+        </p>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="metric-card glass rounded-xl">
+            <div class="text-2xl font-bold gradient-text">15+</div>
+            <div class="text-xs text-slate-500 mt-1">Projects Delivered</div>
+          </div>
+          <div class="metric-card glass rounded-xl">
+            <div class="text-2xl font-bold gradient-text">40%</div>
+            <div class="text-xs text-slate-500 mt-1">API Speed Boost</div>
+          </div>
+          <div class="metric-card glass rounded-xl">
+            <div class="text-2xl font-bold gradient-text">200+</div>
+            <div class="text-xs text-slate-500 mt-1">Staff Supported</div>
+          </div>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-6">
+        <p class="text-xs text-slate-500 code-font mb-4">// developer.profile.json</p>
+        <pre class="code-font text-sm leading-relaxed text-slate-300" style="white-space: pre-wrap;">{
+  <span class="text-indigo-400">"name"</span>: <span class="text-emerald-400">"Lewis Mutabari"</span>,
+  <span class="text-indigo-400">"role"</span>: <span class="text-emerald-400">"Full-Stack Developer"</span>,
+  <span class="text-indigo-400">"location"</span>: <span class="text-emerald-400">"Nairobi, Kenya"</span>,
+  <span class="text-indigo-400">"focus"</span>: [
+    <span class="text-emerald-400">"Web Applications"</span>,
+    <span class="text-emerald-400">"AI Integration"</span>,
+    <span class="text-emerald-400">"API Development"</span>
+  ],
+  <span class="text-indigo-400">"available"</span>: <span class="text-yellow-400">true</span>,
+  <span class="text-indigo-400">"coffee_driven"</span>: <span class="text-yellow-400">true</span>
+}</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills" style="background: rgba(255,255,255,0.01);">
+  <div class="max-w-6xl mx-auto px-6">
+    <p class="text-indigo-400 text-sm font-medium mb-2 code-font">// technical skills</p>
+    <h2 class="section-title gradient-text mb-10">Skills & Expertise</h2>
+
+    <!-- Tab buttons -->
+    <div class="flex flex-wrap gap-2 mb-8">
+      <button class="tab-btn active" onclick="switchSkillTab('overview', this)">Overview</button>
+      <button class="tab-btn" onclick="switchSkillTab('radar', this)">Radar Chart</button>
+      <button class="tab-btn" onclick="switchSkillTab('breakdown', this)">Breakdown</button>
+    </div>
+
+    <!-- Overview Tab -->
+    <div id="tab-overview" class="tab-panel active">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="glass rounded-2xl p-6">
+          <h3 class="text-sm font-semibold text-slate-300 mb-5">Backend & Languages</h3>
+          <div id="skills-backend"></div>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <h3 class="text-sm font-semibold text-slate-300 mb-5">Frontend & Tools</h3>
+          <div id="skills-frontend"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Radar Tab -->
+    <div id="tab-radar" class="tab-panel">
+      <div class="glass rounded-2xl p-6">
+        <div class="chart-container" style="min-height: 320px;">
+          <canvas id="radarChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breakdown Tab -->
+    <div id="tab-breakdown" class="tab-panel">
+      <div class="glass rounded-2xl p-6">
+        <div class="chart-container" style="min-height: 300px;">
+          <canvas id="breakdownChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="max-w-6xl mx-auto px-6">
+    <p class="text-indigo-400 text-sm font-medium mb-2 code-font">// featured work</p>
+    <h2 class="section-title gradient-text mb-10">Projects</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <div class="project-card glass glass-hover">
+        <div class="flex items-start justify-between mb-4">
+          <span class="text-3xl">⚡</span>
+          <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(99,102,241,0.15); color: #818cf8; border: 1px solid rgba(99,102,241,0.3);">AI / LLM</span>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">AI-Powered Portfolio Chatbot</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+          A personal portfolio site with an embedded LLaMA 3 chatbot that answers questions about skills, projects, and experience — all running locally via Ollama.
+        </p>
+        <div class="flex flex-wrap gap-1">
+          <span class="tag">Python</span>
+              <span class="tag">Ollama</span>
+          <span class="tag">LLaMA 3</span>
+          <span class="tag">Tailwind CSS</span>
+        </div>
+      </div>
+
+      <div class="project-card glass glass-hover">
+        <div class="flex items-start justify-between mb-4">
+          <span class="text-3xl">🌐</span>
+          <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(52,211,153,0.15); color: #34d399; border: 1px solid rgba(52,211,153,0.3);">Healthcare</span>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">Point of sale vendor System</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+          A lightweight system for vendors in Kenya. Supports cashier operations.
+        </p>
+        <div class="flex flex-wrap gap-1">
+             <span class="tag">SQLite</span>
+          <span class="tag">Bootstrap</span>
+          <span class="tag">Service Workers</span>
+        </div>
+      </div>
+
+      <div class="project-card glass glass-hover">
+        <div class="flex items-start justify-between mb-4">
+          <span class="text-3xl">🛒</span>
+          <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3);">E-Commerce</span>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">East Africa E-Commerce Suite</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+          Multiple e-commerce stores and booking systems for small businesses across East Africa. Part of 15+ freelance projects delivered successfully.
+        </p>
+        <div class="flex flex-wrap gap-1">
+          <span class="tag">Python</span>
+          <span class="tag">Flask</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">M-Pesa API</span>
+        </div>
+      </div>
+
+      <div class="project-card glass glass-hover">
+        <div class="flex items-start justify-between mb-4">
+          <span class="text-3xl">📊</span>
+          <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3);">Enterprise</span>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">Enterprise API & Dashboard Platform</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+          RESTful APIs and web dashboards for enterprise clients at TechNairobi Solutions. Achieved 40% improvement in API response times through optimization.
+        </p>
+        <div class="flex flex-wrap gap-1">
+          <span class="tag">REST API</span>
+          <span class="tag">Redis</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Agile</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience" style="background: rgba(255,255,255,0.01);">
+  <div class="max-w-6xl mx-auto px-6">
+    <p class="text-indigo-400 text-sm font-medium mb-2 code-font">// work history</p>
+    <h2 class="section-title gradient-text mb-10">Experience</h2>
+
+    <div class="relative">
+      <!-- Timeline line -->
+      <div class="absolute left-5 top-0 bottom-0 w-px" style="background: linear-gradient(to bottom, #818cf8, #34d399, transparent);"></div>
+
+      <div class="space-y-8 pl-14">
+
+        <div class="relative">
+          <div class="timeline-dot absolute -left-9 top-1"></div>
+          <div class="glass glass-hover rounded-2xl p-6">
+            <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+              <div>
+                <h3 class="font-semibold text-lg">Full-Stack Developer</h3>
+                <p class="text-indigo-400 text-sm font-medium">@ Techflex Cyber.</p>
+              </div>
+              <span class="text-xs px-3 py-1 rounded-full glass text-slate-400">Current</span>
+            </div>
+            <ul class="text-slate-400 text-sm space-y-2">
+              <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">▸</span> Building and maintaining RESTful APIs and web dashboards for enterprise clients</li>
+              <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">▸</span> Built a Schoold database</li>
+              <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">▸</span> <strong class="text-emerald-400">Improved API response times by 40%</strong> through query optimization and caching strategies</li>
             </ul>
-        </section>
-        <section>
-            <h2>Contact</h2>
-            <p>Email: myemail@example.com</p>
-        </section>
-    </main>
-    <footer>
-        <p>© 2026 My Portfolio</p>
-    </footer>
-</body>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="timeline-dot absolute -left-9 top-1" style="background: #34d399;"></div>
+          <div class="glass glass-hover rounded-2xl p-6">
+            <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+              <div>
+                <h3 class="font-semibold text-lg">IT Intern / Junior Developer</h3>
+                <p class="text-emerald-400 text-sm font-medium">@ Techflex Cyber</p>
+              </div>
+              <span class="text-xs px-3 py-1 rounded-full glass text-slate-400">Past</span>
+            </div>
+            <ul class="text-slate-400 text-sm space-y-2">
+              <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">▸</span> Assisted in digitizing government records and developing internal tools for data management</li>
+              <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">▸</span> Deployed and configured Linux servers</li>
+              <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">▸</span> Supported <strong class="text-indigo-400">200+ staff</strong> with IT systems and helpdesk tickets</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="timeline-dot absolute -left-9 top-1" style="background: #fbbf24;"></div>
+          <div class="glass glass-hover rounded-2xl p-6">
+            <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+              <div>
+                <h3 class="font-semibold text-lg">Freelance Developer</h3>
+                <p class="text-yellow-400 text-sm font-medium">@ Self-Employed</p>
+              </div>
+              <span class="text-xs px-3 py-1 rounded-full glass text-slate-400">Ongoing</span>
+            </div>
+            <ul class="text-slate-400 text-sm space-y-2">
+              <li class="flex gap-2"><span class="text-yellow-400 mt-0.5">▸</span> Designing and developing websites and web apps for small businesses across East Africa</li>
+              <li class="flex gap-2"><span class="text-yellow-400 mt-0.5">▸</span> Delivered <strong class="text-yellow-400">15+ projects</strong> including e-commerce stores, business websites, and booking systems</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATOR -->
+<section class="section" id="simulator">
+  <div class="max-w-6xl mx-auto px-6">
+    <p class="text-indigo-400 text-sm font-medium mb-2 code-font">// interactive exploration</p>
+    <h2 class="section-title gradient-text mb-2">Career Growth Simulator</h2>
+    <p class="text-slate-400 text-sm mb-8">Explore how different factors influence a developer's career trajectory. Adjust the sliders and watch the simulation update in real-time.</p>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      <!-- Controls -->
+      <div class="glass rounded-2xl p-6">
+        <h3 class="text-sm font-semibold text-slate-300 mb-5">Simulation Parameters</h3>
+        <div class="space-y-5">
+
+          <div>
+            <div class="flex justify-between text-xs mb-2">
+              <span class="text-slate-400">Learning Rate</span>
+              <span class="text-indigo-400 font-medium" id="val-learning">75%</span>
+            </div>
+            <input type="range" class="sim-slider" min="10" max="100" value="75" id="sl-learning" oninput="updateSimulator()">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs mb-2">
+              <span class="text-slate-400">Project Complexity</span>
+              <span class="text-indigo-400 font-medium" id="val-complexity">60%</span>
+            </div>
+            <input type="range" class="sim-slider" min="10" max="100" value="60" id="sl-complexity" oninput="updateSimulator()">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs mb-2">
+              <span class="text-slate-400">Open Source Contribution</span>
+              <span class="text-indigo-400 font-medium" id="val-oss">50%</span>
+            </div>
+            <input type="range" class="sim-slider" min="0" max="100" value="50" id="sl-oss" oninput="updateSimulator()">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs mb-2">
+              <span class="text-slate-400">Networking & Community</span>
+              <span class="text-indigo-400 font-medium" id="val-network">40%</span>
+            </div>
+            <input type="range" class="sim-slider" min="0" max="100" value="40" id="sl-network" oninput="updateSimulator()">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs mb-2">
+              <span class="text-slate-400">Years of Experience</span>
+              <span class="text-indigo-400 font-medium" id="val-years">3 yrs</span>
+            </div>
+            <input type="range" class="sim-slider" min="1" max="10" value="3" id="sl-years" oninput="updateSimulator()">
+          </div>
+
+        </div>
+
+        <div class="mt-6 p-4 rounded-xl" style="background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);">
+          <div class="text-xs text-slate-400 mb-1">Estimated Career Score</div>
+          <div class="text-3xl font-bold gradient-text" id="career-score">72</div>
+          <div class="text-xs text-slate-500 mt-1" id="career-label">Senior Developer Track</div>
+        </div>
+      </div>
+
+      <!-- Chart -->
+      <div class="lg:col-span-2 glass rounded-2xl p-6">
+        <h3 class="text-sm font-semibold text-slate-300 mb-4">Skill Growth Projection (5 Years)</h3>
+        <div class="chart-container" style="min-height: 300px;">
+          <canvas id="simChart"></canvas>
+        </div>
+        <div class="grid grid-cols-3 gap-3 mt-4">
+          <div class="glass rounded-xl p-3 text-center">
+            <div class="text-lg font-bold text-indigo-400" id="sim-salary">$45K</div>
+            <div class="text-xs text-slate-500">Est. Salary</div>
+          </div>
+          <div class="glass rounded-xl p-3 text-center">
+            <div class="text-lg font-bold text-emerald-400" id="sim-projects">18</div>
+            <div class="text-xs text-slate-500">Projects/Year</div>
+          </div>
+          <div class="glass rounded-xl p-3 text-center">
+            <div class="text-lg font-bold text-yellow-400" id="sim-impact">High</div>
+            <div class="text-xs text-slate-500">Impact Level</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAT -->
+<section class="section" id="chat" style="background: rgba(255,255,255,0.01);">
+  <div class="max-w-4xl mx-auto px-6">
+    <p class="text-indigo-400 text-sm font-medium mb-2 code-font">// ai assistant</p>
+    <h2 class="section-title gradient-text mb-2">Chat with Lewis's AI</h2>
+    <p class="text-slate-400 text-sm mb-8">Ask anything about Lewis's skills, projects, or experience. Powered by a simulated LLaMA 3 assistant.</p>
+
+    <div class="glass rounded-2xl overflow-hidden">
+      <!-- Chat header -->
+      <div class="flex items-center gap-3 px-6 py-4" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center text-lg" style="background: linear-gradient(135deg, #4f46e5, #7c3aed);">🤖</div>
+        <div>
+          <div class="text-sm font-semibold">Lewis's AI Assistant</div>
+          <div class="text-xs text-emerald-400 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+            Online · LLaMA 3 via Ollama
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div id="chat-messages" class="flex flex-col gap-4 p-6" style="min-height: 320px; max-height: 420px; overflow-y: auto;">
+        <div class="chat-bubble-bot">
+          Hi! 👋 I'm Lewis's AI assistant, welcome. Ask me anything about his skills, projects, experience, or how to get in touch!
+        </div>
+      </div>
+
+      <!-- Quick prompts -->
+      <div class="px-6 pb-3 flex flex-wrap gap-2" id="quick-prompts">
+        <button class="text-xs px-3 py-1.5 rounded-full glass glass-hover text-slate-400" onclick="sendQuick('Tell me about your projects')">Tell me about your projects</button>
+        <button class="text-xs px-3 py-1.5 rounded-full glass glass-hover text-slate-400" onclick="sendQuick('What are your top skills?')">What are your top skills?</button>
+        <button class="text-xs px-3 py-1.5 rounded-full glass glass-hover text-slate-400" onclick="sendQuick('How can I contact Lewis?')">How can I contact Lewis?</button>
+        <button class="text-xs px-3 py-1.5 rounded-full glass glass-hover text-slate-400" onclick="sendQuick('Tell me about your AI chatbot project')">AI chatbot project</button>
+      </div>
+
+      <!-- Input -->
+      <div class="flex gap-3 p-4" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="Ask about Lewis's skills, projects, experience..."
+          class="flex-1 bg-transparent text-sm text-slate-300 outline-none placeholder-slate-600"
+          onkeydown="if(event.key==='Enter') sendChat()"
+        >
+        <button onclick="sendChat()" class="px-4 py-2 rounded-xl text-sm font-medium" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white;">Send</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-12 text-center" style="border-top: 1px solid rgba(255,255,255,0.06);">
+  <div class="max-w-6xl mx-auto px-6">
+    <p class="gradient-text font-semibold mb-2">Lewis Mutabari</p>
+    <p class="text-slate-500 text-sm mb-4">Full-Stack Developer · Kirinyaga, Kenya</p>
+    <p class="text-slate-600 text-xs">Built with passion · Python · Flask · AI/LLMs</p>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// SKILLS DATA
+// ============================================================
+const backendSkills = [
+  { name: 'Python', level: 92, color: '#818cf8' },
+  { name: 'SQL / SQLite / PostgreSQL', level: 80, color: '#818cf8' },
+  { name: 'Linux / Server Admin', level: 75, color: '#818cf8' },
+];
+
+const frontendSkills = [
+  { name: 'HTML / CSS / Tailwind', level: 85, color: '#34d399' },
+  { name: 'JavaScript', level: 78, color: '#34d399' },
+  { name: 'Docker / Git', level: 72, color: '#34d399' },
+  { name: 'AI / LLM Integration', level: 82, color: '#34d399' },
+];
+
+function renderSkillBars(containerId, skills) {
+  try {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML = skills.map(s => `
+      <div class="mb-4">
+        <div class="flex justify-between text-xs mb-1">
+          <span class="text-slate-300">${s.name}</span>
+          <span style="color: ${s.color};">${s.level}%</span>
+        </div>
+        <div class="w-full rounded-full" style="height: 6px; background: rgba(255,255,255,0.08);">
+          <div class="skill-bar-fill rounded-full" style="width: 0%; background: ${s.color};" data-target="${s.level}"></div>
+        </div>
+      </div>
+    `).join('');
+
+    // Animate bars after a short delay
+    setTimeout(() => {
+      container.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.target + '%';
+      });
+    }, 200);
+  } catch (e) {
+    console.error('renderSkillBars error:', e);
+  }
+}
+
+// ============================================================
+// CHARTS
+// ============================================================
+let radarChartInstance = null;
+let breakdownChartInstance = null;
+let simChartInstance = null;
+
+function initRadarChart() {
+  try {
+    const ctx = document.getElementById('radarChart');
+    if (!ctx) return;
+    if (radarChartInstance) { radarChartInstance.destroy(); }
+    radarChartInstance = new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: ['Python', 'Flask', 'Frontend', 'Databases', 'AI/LLMs', 'DevOps', 'APIs'],
+        datasets: [{
+          label: 'Skill Level',
+          data: [92, 88, 82, 80, 82, 72, 85],
+          backgroundColor: 'rgba(129,140,248,0.15)',
+          borderColor: '#818cf8',
+          borderWidth: 2,
+          pointBackgroundColor: '#818cf8',
+          pointRadius: 4,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          r: {
+            min: 0, max: 100,
+            ticks: { display: false },
+            grid: { color: 'rgba(255,255,255,0.08)' },
+            angleLines: { color: 'rgba(255,255,255,0.08)' },
+            pointLabels: { color: '#94a3b8', font: { size: 11 } }
+          }
+        }
+      }
+    });
+  } catch (e) { console.error('initRadarChart error:', e); }
+}
+
+function initBreakdownChart() {
+  try {
+    const ctx = document.getElementById('breakdownChart');
+    if (!ctx) return;
+    if (breakdownChartInstance) { breakdownChartInstance.destroy(); }
+    breakdownChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Python', 'Flask', 'JavaScript', 'SQL', 'AI/LLMs', 'Linux', 'Docker'],
+        datasets: [{
+          label: 'Proficiency',
+          data: [92, 88, 78, 80, 82, 75, 72],
+          backgroundColor: [
+            'rgba(129,140,248,0.7)',
+            'rgba(99,102,241,0.7)',
+            'rgba(52,211,153,0.7)',
+            'rgba(52,211,153,0.5)',
+            'rgba(251,191,36,0.7)',
+            'rgba(168,85,247,0.7)',
+            'rgba(244,114,182,0.7)',
+          ],
+          borderRadius: 6,
+          borderSkipped: false,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { size: 11 } } },
+          y: { min: 0, max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { size: 11 } } }
+        }
+      }
+    });
+  } catch (e) { console.error('initBreakdownChart error:', e); }
+}
+
+function initSimChart(data) {
+  try {
+    const ctx = document.getElementById('simChart');
+    if (!ctx) return;
+    if (simChartInstance) { simChartInstance.destroy(); }
+    const labels = ['Now', 'Yr 1', 'Yr 2', 'Yr 3', 'Yr 4', 'Yr 5'];
+    simChartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Technical Skills',
+            data: data.technical,
+            borderColor: '#818cf8',
+            backgroundColor: 'rgba(129,140,248,0.1)',
+            fill: true,
+            tension: 0.4,
+            pointRadius: 4,
+          },
+          {
+            label: 'Career Value',
+            data: data.career,
+            borderColor: '#34d399',
+            backgroundColor: 'rgba(52,211,153,0.08)',
+            fill: true,
+            tension: 0.4,
+            pointRadius: 4,
+          },
+          {
+            label: 'Network Influence',
+            data: data.network,
+            borderColor: '#fbbf24',
+            backgroundColor: 'rgba(251,191,36,0.06)',
+            fill: true,
+            tension: 0.4,
+            pointRadius: 4,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            labels: { color: '#94a3b8', font: { size: 11 }, boxWidth: 12 }
+          }
+        },
+        scales: {
+          x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { size: 11 } } },
+          y: { min: 0, max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { size: 11 } } }
+        }
+      }
+    });
+  } catch (e) { console.error('initSimChart error:', e); }
+}
+
+// ============================================================
+// SKILL TABS
+// ============================================================
+function switchSkillTab(tab, btn) {
+  try {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    btn.classList.add('active');
+
+    setTimeout(() => {
+      if (tab === 'radar') initRadarChart();
+      if (tab === 'breakdown') initBreakdownChart();
+    }, 100);
+  } catch (e) { console.error('switchSkillTab error:', e); }
+}
+
+// ============================================================
+// SIMULATOR
+// ============================================================
+function updateSimulator() {
+  try {
+    const learning = parseInt(document.getElementById('sl-learning').value) || 75;
+    const complexity = parseInt(document.getElementById('sl-complexity').value) || 60;
+    const oss = parseInt(document.getElementById('sl-oss').value) || 50;
+    const network = parseInt(document.getElementById('sl-network').value) || 40;
+    const years = parseInt(document.getElementById('sl-years').value) || 3;
+
+    document.getElementById('val-learning').textContent = learning + '%';
+    document.getElementById('val-complexity').textContent = complexity + '%';
+    document.getElementById('val-oss').textContent = oss + '%';
+    document.getElementById('val-network').textContent = network + '%';
+    document.getElementById('val-years').textContent = years + ' yrs';
+
+    // Calculate career score
+    const score = Math.min(100, Math.round(
+      (learning * 0.3) + (complexity * 0.25) + (oss * 0.2) + (network * 0.15) + (years * 1.0)
+    ));
+
+    document.getElementById('career-score').textContent = score;
+
+    let label = 'Junior Developer';
+    if (score >= 80) label = 'Principal / Lead Engineer';
+    else if (score >= 65) label = 'Senior Developer Track';
+    else if (score >= 45) label = 'Mid-Level Developer';
+    document.getElementById('career-label').textContent = label;
+
+    // Salary estimate
+    const salaryBase = 20000 + (score * 600) + (years * 2000);
+    document.getElementById('sim-salary').textContent = '$' + Math.round(salaryBase / 1000) + 'K';
+
+    // Projects per year
+    const projects = Math.round(3 + (complexity / 20) + (learning / 25) + (years * 0.8));
+    document.getElementById('sim-projects').textContent = projects;
+
+    // Impact level
+    let impact = 'Low';
+    if (score >= 75) impact = 'Very High';
+    else if (score >= 60) impact = 'High';
+    else if (score >= 40) impact = 'Medium';
+    document.getElementById('sim-impact').textContent = impact;
+
+    // Generate projection data
+    const base = score;
+    const techGrowth = learning / 100;
+    const careerGrowth = (learning + complexity) / 200;
+    const netGrowth = (network + oss) / 200;
+
+    const techData = [base];
+    const careerData = [base * 0.85];
+    const networkData = [base * 0.5];
+
+    for (let i = 1; i <= 5; i++) {
+      techData.push(Math.min(100, Math.round(techData[i-1] + (techGrowth * 8) + Math.random() * 2)));
+      careerData.push(Math.min(100, Math.round(careerData[i-1] + (careerGrowth * 10) + Math.random() * 2)));
+      networkData.push(Math.min(100, Math.round(networkData[i-1] + (netGrowth * 9) + Math.random() * 2)));
+    }
+
+    initSimChart({ technical: techData, career: careerData, network: networkData });
+  } catch (e) { console.error('updateSimulator error:', e); }
+}
+
+// ============================================================
+// CHAT
+// ============================================================
+const chatKnowledge = {
+  projects: 'Lewis has built some exciting projects! 🚀\n\n1. **AI-Powered Portfolio Chatbot** — A Flask + LLaMA 3 chatbot running locally via Ollama that answers questions about his portfolio.\n\n2. **Community Health Records System** — An offline-first EHR system for rural clinics in Kenya using Flask, SQLite, and Service Workers.\n\n3. **East Africa E-Commerce Suite** — 15+ e-commerce stores and booking systems for small businesses across East Africa.\n\n4. **Enterprise API Platform** — RESTful APIs and dashboards at TechNairobi Solutions, achieving 40% faster response times.',
+  skills: 'Lewis\'s core skills include:\n\n🐍 **Python** (92%) — his primary language\n🚀 **Flask / FastAPI** (88%) — backend web frameworks\n🤖 **AI / LLMs** (82%) — Ollama, LLaMA 3 integration\n🗄️ **SQL / PostgreSQL** (80%) — database design\n🌐 **JavaScript / Tailwind** (82%) — frontend development\n🐧 **Linux / DevOps** (75%) — server administration',
+  contact: 'You can reach Lewis through:\n\n📧 **Email**: lewis.mutabari@email.com\n💼 **LinkedIn**: linkedin.com/in/lewismutabari\n🐙 **GitHub**: github.com/lewismutabari\n\nHe\'s currently open to new opportunities!',
+  experience: 'Lewis has experience across three roles:\n\n🏢 **TechNairobi Solutions Ltd.** (Current) — Full-Stack Developer building enterprise APIs and dashboards. Improved API response times by 40%.\n\n🏛️ **Kenya ICT Authority** — IT Intern supporting 200+ staff, digitizing government records, and configuring Linux servers.\n\n💼 **Freelance** (Ongoing) — Delivered 15+ projects for small businesses across East Africa.',
+  ai: 'Lewis\'s AI chatbot project is one of his favorites! 🤖\n\nIt\'s a personal portfolio site with an embedded **LLaMA 3** model running locally via **Ollama**. The chatbot answers questions about his skills, projects, and experience — all without sending data to external servers.\n\nTech stack: Python, Flask, Ollama, LLaMA 3, Tailwind CSS.',
+  health: 'The Community Health Records System is a meaningful project! 🌐\n\nIt\'s a lightweight EHR system designed for **rural clinics in Kenya** where internet connectivity is unreliable. It uses **offline-first** architecture with Service Workers and IndexedDB to store data locally, then syncs when connectivity is restored.\n\nTech stack: Flask, SQLite, Bootstrap, Service Workers, IndexedDB.',
+  location: 'Lewis is based in **Nairobi, Kenya** 🇰🇪. He works with clients across East Africa and internationally.',
+  default: 'Great question! I\'m Lewis\'s AI assistant. I can tell you about his **projects**, **skills**, **work experience**, **AI chatbot project**, **health records system**, or how to **contact** him. What would you like to know?'
+};
+
+function getBotResponse(msg) {
+  const m = msg.toLowerCase();
+  if (m.includes('project') || m.includes('built') || m.includes('work')) return chatKnowledge.projects;
+  if (m.includes('skill') || m.includes('tech') || m.includes('python') || m.includes('flask') || m.includes('language')) return chatKnowledge.skills;
+  if (m.includes('contact') || m.includes('email') || m.includes('reach') || m.includes('hire') || m.includes('touch')) return chatKnowledge.contact;
+  if (m.includes('experience') || m.includes('job') || m.includes('work') || m.includes('career') || m.includes('nairobi') || m.includes('technairobi') || m.includes('ict')) return chatKnowledge.experience;
+  if (m.includes('ai') || m.includes('chatbot') || m.includes('llama') || m.includes('ollama') || m.includes('llm')) return chatKnowledge.ai;
+  if (m.includes('health') || m.includes('clinic') || m.includes('kenya') || m.includes('offline') || m.includes('rural')) return chatKnowledge.health;
+  if (m.includes('location') || m.includes('where') || m.includes('based') || m.includes('country')) return chatKnowledge.location;
+  return chatKnowledge.default;
+}
+
+function appendMessage(text, isUser) {
+  try {
+    const container = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.className = isUser ? 'chat-bubble-user' : 'chat-bubble-bot';
+    // Convert **bold** markdown
+    div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong style="color:#a5b4fc;">$1</strong>').replace(/\n/g, '<br>');
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  } catch (e) { console.error('appendMessage error:', e); }
+}
+
+function showTyping() {
+  try {
+    const container = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.id = 'typing-indicator';
+    div.className = 'chat-bubble-bot flex gap-1 items-center';
+    div.style.padding = '12px 16px';
+    div.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  } catch (e) { console.error('showTyping error:', e); }
+}
+
+function hideTyping() {
+  const el = document.getElementById('typing-indicator');
+  if (el) el.remove();
+}
+
+function sendChat() {
+  try {
+    const input = document.getElementById('chat-input');
+    const msg = (input.value || '').trim();
+    if (!msg) return;
+    input.value = '';
+
+    appendMessage(msg, true);
+    showTyping();
+
+    const delay = 800 + Math.random() * 600;
+    setTimeout(() => {
+      hideTyping();
+      appendMessage(getBotResponse(msg), false);
+    }, delay);
+  } catch (e) { console.error('sendChat error:', e); }
+}
+
+function sendQuick(msg) {
+  try {
+    document.getElementById('chat-input').value = msg;
+    sendChat();
+    // Hide quick prompts after first use
+    const qp = document.getElementById('quick-prompts');
+    if (qp) qp.style.display = 'none';
+  } catch (e) { console.error('sendQuick error:', e); }
+}
+
+// ============================================================
+// SCROLL UTILITY
+// ============================================================
+function scrollTo(id) {
+  try {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch (e) { console.error('scrollTo error:', e); }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    renderSkillBars('skills-backend', backendSkills);
+    renderSkillBars('skills-frontend', frontendSkills);
+    updateSimulator();
+  } catch (e) { console.error('DOMContentLoaded init error:', e); }
+});
+</script>
+<script>window.parent.postMessage({ action: "ready" }, "*"); 
+ 
+window.console = new Proxy(console, {
+  get(target, prop) {
+    if (['log', 'warn', 'error'].includes(prop)) {
+      return new Proxy(target[prop], {
+        apply(fn, thisArg, args) {
+          fn.apply(thisArg, args);
+          window.parent.postMessage({ action: 'console', 
+            type: prop, 
+            args: args.map((arg) => {
+              try {
+                return JSON.stringify(arg).replace(/^["']|["']$/g, '');
+              } catch (e) {
+                return arg;
+              }
+            }) 
+          }, '*');
+        }
+      });
+    }
+    return target[prop];
+  }
+});
+</script></body>
 </html>
